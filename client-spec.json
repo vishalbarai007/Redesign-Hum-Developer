@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "archetype": "real-estate",
+  "brand": {
+    "name": "HUM Developers",
+    "industry": "Premium Residences & Landmark Projects in Mumbai",
+    "vibe": "premium",
+    "palette": {
+      "primary": "#0F0F11",
+      "secondary": "#141418",
+      "accent": "#C5A880",
+      "gold": "#D4AF37",
+      "background": "#0A0A0C",
+      "text": "#F8FAFC",
+      "muted": "#94A3B8",
+      "border": "rgba(197, 168, 128, 0.25)"
+    },
+    "tagline": "Building Dreams, Shaping Futures, Creating Legacies.",
+    "logoUrl": "/humLogo.svg",
+    "logoWhiteUrl": "/humLogoWhite.png"
+  },
+  "navigation": [
+    { "label": "Overview", "href": "#overview" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Philosophy", "href": "#philosophy" },
+    { "label": "Residences", "href": "#residences" },
+    { "label": "Amenities", "href": "#amenities" },
+    { "label": "Neighbourhood", "href": "#connectivity" },
+    { "label": "FAQ", "href": "#faq" }
+  ],
+  "leadCapture": {
+    "destinations": ["email", "crm"],
+    "fields": ["fullName", "email", "phone", "project", "unitInterest", "message"]
+  },
+  "contact": {
+    "phone": "+91 99200 61100",
+    "email": "info@humdevelopers.com",
+    "address": "Kandivali West & Borivali West, Mumbai, Maharashtra 400067",
+    "rera": "PM1180002502952 (Emerald Heights) & Multiple Registered Projects"
+  }
+}

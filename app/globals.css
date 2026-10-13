@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%; /* #0A0A0C Solid Deep Obsidian */
+    --foreground: 210 40% 98%; /* #F8FAFC Solid Pure White */
+
+    --card: 240 9% 7%; /* #111115 Solid Card Dark */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 240 9% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 38 42% 64%; /* #C5A880 Champagne Gold */
+    --primary-foreground: 240 10% 4%;
+
+    --secondary: 240 6% 12%; /* #1E1E24 Solid Elevated Surface */
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 240 6% 15%;
+    --muted-foreground: 215 16% 65%; /* #94A3B8 */
+
+    --accent: 38 42% 64%; /* #C5A880 Champagne Gold */
+    --accent-foreground: 240 10% 4%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 240 6% 16%; /* Solid Hairline Border */
+    --input: 240 6% 16%;
+    --ring: 38 42% 64%;
+
+    --radius: 0.25rem;
+
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-[#C5A880] selection:text-black;
+    font-family: var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: #0A0A0C;
+    color: #F8FAFC;
+  }
+  h1, h2, h3, h4, .font-editorial {
+    font-family: var(--font-serif);
+  }
+  html {
+    scroll-behavior: smooth;
+    background-color: #0A0A0C;
+  }
+}
+
+/* Subtle luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0C;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A880;
+}
+
+/* Premium Solid Luxury Button Styles (Zero Gradients) */
+.goldenLineBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C5A880;
+  transition: all 0.3s ease;
+  padding-bottom: 3px;
+}
+.goldenLineBtn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #C5A880;
+  transform: scaleX(0.4);
+  transform-origin: left;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.goldenLineBtn:hover::after {
+  transform: scaleX(1);
+  background-color: #FFFFFF;
+}
+.goldenLineBtn:hover {
+  color: #FFFFFF;
+}
+
+.goldenBorderBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C5A880;
+  background-color: transparent;
+  border: 1px solid rgba(197, 168, 128, 0.45);
+  transition: all 0.25s ease;
+}
+.goldenBorderBtn:hover {
+  color: #0A0A0C;
+  background-color: #C5A880;
+  border-color: #C5A880;
+}
+
+.goldenFilledBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0A0A0C;
+  background-color: #C5A880;
+  border: 1px solid #C5A880;
+  transition: all 0.25s ease;
+}
+.goldenFilledBtn:hover {
+  background-color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+.secondarySolidBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F8FAFC;
+  background-color: #1A1A22;
+  border: 1px solid #2E2E38;
+  transition: all 0.25s ease;
+}
+.secondarySolidBtn:hover {
+  background-color: #272732;
+  border-color: #C5A880;
+  color: #C5A880;
+}
