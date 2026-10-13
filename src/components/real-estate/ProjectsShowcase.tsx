@@ -8,10 +8,21 @@ import { humProjectsData, HumProject } from "@/data/projects";
 interface ProjectsShowcaseProps {
   onOpenBooking: (projectName?: string) => void;
   onOpenBrochure: (projectName?: string) => void;
+  externalFilter?: string;
 }
 
-export function ProjectsShowcase({ onOpenBooking, onOpenBrochure }: ProjectsShowcaseProps) {
+export function ProjectsShowcase({
+  onOpenBooking,
+  onOpenBrochure,
+  externalFilter
+}: ProjectsShowcaseProps) {
   const [activeFilter, setActiveFilter] = useState<string>("All");
+
+  React.useEffect(() => {
+    if (externalFilter) {
+      setActiveFilter(externalFilter);
+    }
+  }, [externalFilter]);
 
   const filteredProjects = humProjectsData.filter((p) => {
     if (activeFilter === "All") return true;

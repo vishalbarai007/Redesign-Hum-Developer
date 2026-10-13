@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   tagline: "Building Dreams, Shaping Futures, Creating Legacies",
   description: "For over 20+ years, HUM Developers has been synonymous with architectural elegance, timely execution, and luxury living across Mumbai's western corridor including Kandivali and Borivali.",
   url: "https://www.humdevelopers.com",
-  ogImage: "https://cdn.sanity.io/images/3wmbb6cw/production/98cb2c2d4f9a75bfb71f3458d5036e9fc0b98c47-2000x1125.jpg",
+  ogImage: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
   theme: "premium",
   palette: {
     primary: "#0A0A0C",

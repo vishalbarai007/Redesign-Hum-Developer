@@ -65,23 +65,14 @@ export function LuxuryNavbar({ onOpenBooking }: LuxuryNavbarProps) {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 sm:w-11 sm:h-11 shrink-0">
-              <Image
-                src="/humLogo.svg"
-                alt="HUM Developers Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl tracking-[0.15em] font-medium text-white group-hover:text-[#C5A880] transition-colors">
-                HUM DEVELOPERS
-              </span>
-              <span className="text-[9px] uppercase tracking-[0.3em] text-[#C5A880] font-sans -mt-0.5">
-                Building Legacies Since 2004
-              </span>
-            </div>
+            <Image
+              src="/humLogoWhite.png"
+              alt="HUM Developers"
+              width={160}
+              height={52}
+              className="h-9 sm:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

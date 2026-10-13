@@ -15,11 +15,14 @@ import { HumContactSection } from "@/components/real-estate/HumContactSection";
 import { Footer } from "@/components/reusable/Footer";
 import { BookingModal } from "@/components/real-estate/BookingModal";
 import { BrochureModal } from "@/components/real-estate/BrochureModal";
+import { BrandFilmModal } from "@/components/real-estate/BrandFilmModal";
 import { FloatingBookingFab } from "@/components/real-estate/FloatingBookingFab";
 
 export default function HomePage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
+  const [isBrandFilmOpen, setIsBrandFilmOpen] = useState(false);
+  const [projectFilter, setProjectFilter] = useState<string>("All");
   const [activeModalProject, setActiveModalProject] = useState<string | undefined>(undefined);
 
   const handleOpenBooking = (projectOrUnit?: string) => {
@@ -38,10 +41,12 @@ export default function HomePage() {
       <LuxuryNavbar onOpenBooking={() => handleOpenBooking()} />
 
       <main className="flex-1">
-        {/* Majestic Architectural Hero */}
+        {/* Lodha-Inspired Cinematic Video Hero with Property Search */}
         <LuxuryPropertyHero
           onOpenBooking={() => handleOpenBooking()}
           onOpenBrochure={() => handleOpenBrochure()}
+          onOpenBrandFilm={() => setIsBrandFilmOpen(true)}
+          onFilterChange={(filter) => setProjectFilter(filter)}
         />
 
         {/* 20+ Years Legacy & Heritage Story */}
@@ -51,6 +56,7 @@ export default function HomePage() {
         <ProjectsShowcase
           onOpenBooking={handleOpenBooking}
           onOpenBrochure={handleOpenBrochure}
+          externalFilter={projectFilter}
         />
 
         {/* Residences & Zoomable Blueprint Lightbox Modal */}
@@ -90,6 +96,14 @@ export default function HomePage() {
         isOpen={isBrochureOpen}
         onClose={() => setIsBrochureOpen(false)}
         defaultProject={activeModalProject}
+      />
+
+      {/* Cinematic Brand Film Player Modal (Lodha Experience) */}
+      <BrandFilmModal
+        isOpen={isBrandFilmOpen}
+        onClose={() => setIsBrandFilmOpen(false)}
+        onOpenBooking={() => handleOpenBooking()}
+        onOpenBrochure={() => handleOpenBrochure()}
       />
 
       {/* Persistent Floating Viewing Scheduler FAB */}

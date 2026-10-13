@@ -14,17 +14,13 @@ export function Footer() {
           {/* Brand Info */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-3 mb-4">
-              <div className="relative w-9 h-9 shrink-0">
-                <Image
-                  src="/humLogo.svg"
-                  alt="HUM Developers Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-serif text-2xl tracking-[0.15em] font-medium text-white">
-                HUM DEVELOPERS
-              </span>
+              <Image
+                src="/humLogoWhite.png"
+                alt="HUM Developers"
+                width={150}
+                height={50}
+                className="h-9 w-auto object-contain"
+              />
             </div>
 
             <p className="text-xs sm:text-sm text-[#94A3B8] max-w-sm leading-relaxed mb-6 font-light">

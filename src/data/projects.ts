@@ -31,7 +31,7 @@ export const humProjectsData: HumProject[] = [
     reraNumber: "PM1180002502952",
     reraQrCode: "https://cdn.sanity.io/images/3wmbb6cw/production/d8df8e640b64e1186a582da9d185ef4f3104b025-256x256.png",
     bannerImage: "https://cdn.sanity.io/images/3wmbb6cw/production/cffe754409c8cee80dd0bafbc1acebf73a314fbd-1440x517.jpg",
-    thumbnailImage: "https://cdn.sanity.io/images/3wmbb6cw/production/98cb2c2d4f9a75bfb71f3458d5036e9fc0b98c47-2000x1125.jpg",
+    thumbnailImage: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
     galleryImages: [
       "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
       "https://cdn.sanity.io/images/3wmbb6cw/production/5305d4bb79173938d201b9cfaa7b0f86a6662a59-900x440.jpg",
