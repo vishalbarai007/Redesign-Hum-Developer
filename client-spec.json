@@ -6,14 +6,13 @@
     "industry": "Premium Residences & Landmark Projects in Mumbai",
     "vibe": "premium",
     "palette": {
-      "primary": "#0F0F11",
-      "secondary": "#141418",
-      "accent": "#C5A880",
-      "gold": "#D4AF37",
-      "background": "#0A0A0C",
-      "text": "#F8FAFC",
-      "muted": "#94A3B8",
-      "border": "rgba(197, 168, 128, 0.25)"
+      "primary": "#265CA0",
+      "secondary": "#163B66",
+      "accent": "#265CA0",
+      "background": "#FFFFFF",
+      "text": "#0F172A",
+      "muted": "#64748B",
+      "border": "#E2E8F0"
     },
     "tagline": "Building Dreams, Shaping Futures, Creating Legacies.",
     "logoUrl": "/humLogo.svg",

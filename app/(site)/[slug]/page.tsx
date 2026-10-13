@@ -47,40 +47,37 @@ export default async function DynamicSlugPage({ params }: PageProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0A0A0C] text-[#F8FAFC]">
+    <div className="flex flex-col min-h-screen bg-white text-slate-900 font-sans">
       {/* Top Bar */}
-      <header className="bg-[#0A0A0C] border-b border-[#27272A] py-4 px-6">
+      <header className="bg-white border-b border-slate-200 py-4 px-6">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative w-8 h-8">
-              <Image src="/humLogo.svg" alt="HUM Developers" fill className="object-contain" />
-            </div>
-            <span className="font-serif text-xl tracking-[0.15em] text-white">HUM DEVELOPERS</span>
+            <Image src="/humLogo.svg" alt="HUM Developers" width={140} height={45} className="h-8 w-auto object-contain" />
           </Link>
           <Link
             href="/"
-            className="inline-flex items-center text-xs uppercase tracking-wider text-[#C5A880] hover:text-white transition-colors"
+            className="inline-flex items-center text-xs uppercase tracking-wider text-[#265CA0] hover:text-[#183C68] font-bold transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5 mr-1.5" /> Back to Home
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 py-20 px-6">
+      <main className="flex-1 py-16 px-6 bg-[#F8FAFC]">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-2">
-              <ShieldCheck className="w-4 h-4 text-[#C5A880]" />
-              <span className="text-[11px] uppercase tracking-[0.25em] text-[#C5A880] font-semibold">
+              <ShieldCheck className="w-4 h-4 text-[#265CA0]" />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-[#265CA0] font-bold">
                 {pageData.subtitle}
               </span>
             </div>
-            <h1 className="font-serif text-3xl sm:text-5xl text-white font-normal mb-3">
+            <h1 className="font-heading text-3xl sm:text-5xl text-slate-900 font-bold mb-3">
               {pageData.title}
             </h1>
           </div>
 
-          <div className="p-8 sm:p-10 bg-[#141418] border border-[#27272A] rounded-xs space-y-6 text-[#CBD5E1] text-xs sm:text-sm leading-relaxed font-light">
+          <div className="p-8 sm:p-10 bg-white border border-slate-200 rounded-lg shadow-sm space-y-5 text-slate-700 text-xs sm:text-sm leading-relaxed font-normal">
             {pageData.content.map((paragraph, idx) => (
               <p key={idx}>{paragraph}</p>
             ))}

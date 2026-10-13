@@ -41,27 +41,26 @@ export function BrochureModal({ isOpen, onClose, defaultProject }: BrochureModal
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && handleReset()}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 animate-in fade-in duration-200" />
-        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-md bg-[#0F0F11] border border-[#27272A] rounded-sm p-6 sm:p-8 z-50 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <Dialog.Overlay className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 animate-in fade-in duration-200" />
+        <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-md bg-white border border-slate-200 rounded-lg p-6 sm:p-8 z-50 shadow-2xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="flex justify-between items-start pb-4 border-b border-[#27272A] mb-6">
+          <div className="flex justify-between items-start pb-4 border-b border-slate-200 mb-6">
             <div>
-              <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.25em] text-[#C5A880] font-semibold mb-1">
-                <ShieldCheck className="w-3 h-3 text-[#C5A880]" />
+              <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#265CA0] font-bold mb-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#265CA0]" />
                 Official E-Brochure Dispatch
               </div>
-              <Dialog.Title className="font-serif text-2xl text-white font-normal">
-                Download Project Brochure
+              <Dialog.Title className="font-heading text-2xl text-slate-900 font-bold">
+                Download Master Brochure
               </Dialog.Title>
-              <Dialog.Description className="font-sans text-xs text-[#94A3B8] mt-1">
+              <Dialog.Description className="text-xs text-slate-600 mt-1">
                 Instant delivery of comprehensive masterplan, floor plans, specifications, and pricing sheet.
               </Dialog.Description>
             </div>
 
             <Dialog.Close asChild>
               <button
-                onClick={handleReset}
-                className="p-2 text-[#94A3B8] hover:text-white hover:bg-[#1A1A22] rounded-sm transition-colors"
+                className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors"
                 aria-label="Close dialog"
               >
                 <X className="w-5 h-5" />
@@ -70,112 +69,125 @@ export function BrochureModal({ isOpen, onClose, defaultProject }: BrochureModal
           </div>
 
           {isSuccess ? (
-            <div className="py-6 text-center">
-              <div className="w-12 h-12 bg-[#141418] border border-[#C5A880] rounded-full flex items-center justify-center mx-auto mb-4 text-[#C5A880]">
-                <CheckCircle2 className="w-7 h-7" />
+            <div className="py-8 text-center">
+              <div className="w-14 h-14 bg-[#EBF3FC] text-[#265CA0] rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="font-serif text-xl text-white mb-2">Brochure Dispatched</h3>
-              <p className="text-xs text-[#94A3B8] leading-relaxed max-w-sm mx-auto mb-5">
-                The high-resolution brochure for <span className="text-[#C5A880] font-medium">{selectedProject}</span> has been sent to <span className="text-white">{email}</span> and WhatsApp on <span className="text-white">{phone}</span>.
+              <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">
+                Brochure Dispatched!
+              </h3>
+              <p className="text-xs text-slate-600 mb-6 leading-relaxed">
+                The comprehensive PDF brochure for <strong className="text-[#265CA0]">{selectedProject}</strong> has been shared to <strong className="text-slate-900">{email}</strong> and via WhatsApp to <strong className="text-slate-900">{phone}</strong>.
               </p>
-              <a
-                href="/floorplan.jpg"
-                download="HUM-Developers-Brochure.jpg"
-                className="goldenFilledBtn text-xs py-2 px-5 inline-flex"
-              >
-                <Download className="w-3.5 h-3.5 mr-1" />
-                Download Direct Copy
-              </a>
+              <div className="flex flex-col gap-2">
+                <a
+                  href="/floorplan.jpg"
+                  download
+                  className="brandFilledBtn py-2.5 text-xs justify-center"
+                >
+                  <Download className="w-3.5 h-3.5 mr-1" />
+                  Download Instant PDF
+                </a>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="text-xs text-slate-500 hover:text-slate-800 py-1"
+                >
+                  Close Window
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#CBD5E1] mb-1 font-medium">
-                  Select Project
+                <label className="block text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Selected Development
                 </label>
                 <select
                   value={selectedProject}
                   onChange={(e) => setSelectedProject(e.target.value)}
-                  className="w-full bg-[#141418] border border-[#27272A] text-white text-xs px-3.5 py-2.5 rounded-sm focus:outline-none focus:border-[#C5A880] transition-colors"
+                  className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs px-3.5 py-2.5 rounded focus:outline-none focus:border-[#265CA0] font-medium"
                 >
                   {humProjectsData.map((p) => (
-                    <option key={p.id} value={p.name} className="bg-[#0F0F11] text-white">
-                      {p.name} ({p.location})
+                    <option key={p.id} value={p.name}>
+                      {p.name} ({p.location.split(",")[0]})
                     </option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#CBD5E1] mb-1 font-medium">
-                  Full Name
+                <label className="block text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Full Name *
                 </label>
                 <div className="relative">
+                  <User className="w-3.5 h-3.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
-                    placeholder="Your Name"
+                    required
+                    placeholder="e.g. Vikram Mehta"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    required
-                    className="w-full bg-[#141418] border border-[#27272A] text-white text-xs pl-9 pr-3.5 py-2.5 rounded-sm focus:outline-none focus:border-[#C5A880] transition-colors"
+                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs pl-9 pr-3.5 py-2.5 rounded focus:outline-none focus:border-[#265CA0]"
                   />
-                  <User className="w-3.5 h-3.5 text-[#94A3B8] absolute left-3 top-3.5 pointer-events-none" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#CBD5E1] mb-1 font-medium">
-                  Mobile Number (WhatsApp)
+                <label className="block text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  WhatsApp / Phone Number *
                 </label>
                 <div className="relative">
+                  <Phone className="w-3.5 h-3.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="tel"
-                    placeholder="+91 99200 XXXXX"
+                    required
+                    placeholder="+91 98200 12345"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    required
-                    className="w-full bg-[#141418] border border-[#27272A] text-white text-xs pl-9 pr-3.5 py-2.5 rounded-sm focus:outline-none focus:border-[#C5A880] transition-colors"
+                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs pl-9 pr-3.5 py-2.5 rounded focus:outline-none focus:border-[#265CA0]"
                   />
-                  <Phone className="w-3.5 h-3.5 text-[#94A3B8] absolute left-3 top-3.5 pointer-events-none" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#CBD5E1] mb-1 font-medium">
-                  Email Address
+                <label className="block text-[11px] uppercase tracking-wider text-slate-700 font-bold mb-1">
+                  Email Address *
                 </label>
                 <div className="relative">
+                  <Mail className="w-3.5 h-3.5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="email"
-                    placeholder="name@domain.com"
+                    required
+                    placeholder="vikram@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full bg-[#141418] border border-[#27272A] text-white text-xs pl-9 pr-3.5 py-2.5 rounded-sm focus:outline-none focus:border-[#C5A880] transition-colors"
+                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs pl-9 pr-3.5 py-2.5 rounded focus:outline-none focus:border-[#265CA0]"
                   />
-                  <Mail className="w-3.5 h-3.5 text-[#94A3B8] absolute left-3 top-3.5 pointer-events-none" />
                 </div>
               </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="goldenFilledBtn w-full text-xs py-2.5 justify-center"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
-                      Generating Brochure Packet...
-                    </>
-                  ) : (
-                    <>
-                      <Download className="w-3.5 h-3.5 mr-1.5" />
-                      Download Instant E-Brochure
-                    </>
-                  )}
-                </button>
-              </div>
+              <p className="text-[10px] text-slate-500 leading-tight">
+                *We respect your privacy. No spam. You will only receive the official brochure and pricing sheet.
+              </p>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full brandFilledBtn py-3 text-xs justify-center"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin mr-2" />
+                    Generating Document...
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-3.5 h-3.5 mr-2" />
+                    Download Official Brochure
+                  </>
+                )}
+              </button>
             </form>
           )}
         </Dialog.Content>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 import { offeringsData } from "@/data/offerings";
 
 interface ServicesPillarsProps {
@@ -11,20 +11,20 @@ interface ServicesPillarsProps {
 
 export function ServicesPillars({ onOpenBooking }: ServicesPillarsProps) {
   return (
-    <section id="services" className="py-24 bg-[#0F0F11] border-t border-[#27272A] relative">
+    <section id="services" className="py-20 bg-[#F8FAFC] border-t border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-8 h-[1px] bg-[#C5A880]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-medium">
-              Core Capabilities
+            <span className="w-7 h-[2px] bg-[#265CA0]" />
+            <span className="text-xs uppercase tracking-[0.2em] text-[#265CA0] font-bold">
+              DEVELOPMENT EXPERTISE
             </span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-light text-white leading-tight">
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
             Specialized Real Estate Verticals
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#94A3B8] max-w-xl mt-2 font-light">
-            Comprehensive development expertise spanning greenfield residential construction, urban redevelopment, and global NRI portfolio curation.
+          <p className="text-xs sm:text-sm text-slate-600 max-w-xl mt-2 font-normal">
+            Proven mastery in greenfield residential towers, trusted society redevelopment, and premier NRI investment management.
           </p>
         </div>
 
@@ -32,10 +32,10 @@ export function ServicesPillars({ onOpenBooking }: ServicesPillarsProps) {
           {offeringsData.map((offering) => (
             <div
               key={offering.id}
-              className="bg-[#141418] border border-[#27272A] rounded-xs overflow-hidden flex flex-col justify-between group hover:border-[#C5A880]/50 transition-colors"
+              className="bg-white border border-slate-200 rounded-lg overflow-hidden flex flex-col justify-between group hover:border-[#265CA0] hover:shadow-xl transition-all duration-300"
             >
               <div>
-                <div className="relative h-60 w-full overflow-hidden bg-[#0A0A0C]">
+                <div className="relative h-56 w-full overflow-hidden bg-slate-100">
                   <Image
                     src={offering.imageUrl}
                     alt={offering.title}
@@ -45,7 +45,7 @@ export function ServicesPillars({ onOpenBooking }: ServicesPillarsProps) {
                   />
                   {offering.badge && (
                     <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 rounded-xs bg-[#0A0A0C]/90 text-[10px] uppercase tracking-wider text-[#C5A880] font-medium border border-[#27272A]">
+                      <span className="px-2.5 py-1 rounded bg-[#265CA0] text-[10px] uppercase tracking-wider text-white font-bold shadow-md">
                         {offering.badge}
                       </span>
                     </div>
@@ -53,37 +53,34 @@ export function ServicesPillars({ onOpenBooking }: ServicesPillarsProps) {
                 </div>
 
                 <div className="p-6">
-                  <span className="text-[10px] uppercase tracking-wider text-[#C5A880] block mb-1">
+                  <span className="text-[10px] uppercase tracking-wider text-[#265CA0] font-bold block mb-1">
                     {offering.tagline}
                   </span>
-                  <h3 className="font-serif text-2xl text-white font-normal mb-3">
+                  <h3 className="font-heading text-xl font-bold text-slate-900 mb-2">
                     {offering.title}
                   </h3>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed mb-6 font-light">
+                  <p className="text-xs text-slate-600 leading-relaxed mb-4 font-normal">
                     {offering.description}
                   </p>
 
-                  {offering.features && (
-                    <ul className="space-y-2.5 mb-6 pt-4 border-t border-[#27272A]">
-                      {offering.features.map((feat, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-xs text-[#CBD5E1]">
-                          <Check className="w-3.5 h-3.5 text-[#C5A880] shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <ul className="space-y-2 text-xs text-slate-700">
+                    {offering.features?.map((b, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <Check className="w-3.5 h-3.5 text-[#265CA0] mt-0.5 shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 
-              <div className="p-6 pt-0">
+              <div className="p-6 pt-0 border-t border-slate-100 mt-4">
                 <button
                   type="button"
                   onClick={onOpenBooking}
-                  className="goldenLineBtn text-[11px] w-full justify-between"
+                  className="brandLineBtn text-xs pt-3"
                 >
-                  <span>Inquire About This Service</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  Consult Our Experts <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

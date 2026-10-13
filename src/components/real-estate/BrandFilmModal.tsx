@@ -62,8 +62,10 @@ export function BrandFilmModal({
   const handleTimeUpdate = () => {
     if (!videoRef.current) return;
     const current = videoRef.current.currentTime;
-    const duration = videoRef.current.duration || 1;
-    setProgress((current / duration) * 100);
+    const duration = videoRef.current.duration;
+    if (duration > 0) {
+      setProgress((current / duration) * 100);
+    }
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -86,17 +88,17 @@ export function BrandFilmModal({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-5xl bg-[#0F0F11] border border-[#C5A880]/30 rounded-xs overflow-hidden shadow-2xl flex flex-col">
+      <div className="relative w-full max-w-5xl bg-white border border-slate-200 rounded-xl overflow-hidden shadow-2xl flex flex-col">
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 bg-[#0A0A0C] border-b border-[#27272A]">
+        <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200">
           <div className="flex items-center gap-3">
-            <span className="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse" />
-            <span className="font-serif text-lg sm:text-xl text-white tracking-wide">
-              The HUM Legacy &bull; Cinematic Brand Experience
+            <span className="w-2.5 h-2.5 rounded-full bg-[#265CA0] animate-pulse" />
+            <span className="font-heading text-lg font-bold text-slate-900 tracking-tight">
+              The HUM Legacy &bull; Cinematic Brand Film
             </span>
-            <span className="hidden sm:inline text-[10px] uppercase tracking-widest text-[#C5A880] font-sans px-2 py-0.5 border border-[#C5A880]/40 rounded-xs">
+            <span className="hidden sm:inline text-[10px] uppercase tracking-wider text-[#265CA0] font-bold px-2 py-0.5 bg-[#EBF3FC] rounded">
               Mumbai Showcase
             </span>
           </div>
@@ -104,10 +106,10 @@ export function BrandFilmModal({
           <button
             type="button"
             onClick={onClose}
-            className="text-[#94A3B8] hover:text-white p-1 rounded-xs transition-colors"
+            className="text-slate-500 hover:text-slate-900 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
             aria-label="Close Brand Film"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -128,10 +130,10 @@ export function BrandFilmModal({
             {/* Progress Bar */}
             <div
               onClick={handleSeek}
-              className="w-full h-1.5 bg-white/20 hover:h-2.5 rounded-full cursor-pointer relative transition-all"
+              className="w-full h-1.5 bg-white/30 hover:h-2.5 rounded-full cursor-pointer relative transition-all"
             >
               <div
-                className="h-full bg-[#C5A880] rounded-full relative"
+                className="h-full bg-[#265CA0] rounded-full relative"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -142,7 +144,7 @@ export function BrandFilmModal({
                 <button
                   type="button"
                   onClick={togglePlay}
-                  className="p-1.5 hover:text-[#C5A880] transition-colors"
+                  className="p-1.5 hover:text-[#60A5FA] transition-colors"
                   aria-label={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-current" />}
@@ -151,13 +153,13 @@ export function BrandFilmModal({
                 <button
                   type="button"
                   onClick={toggleMute}
-                  className="p-1.5 hover:text-[#C5A880] transition-colors"
+                  className="p-1.5 hover:text-[#60A5FA] transition-colors"
                   aria-label={isMuted ? "Unmute" : "Mute"}
                 >
                   {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                 </button>
 
-                <span className="text-[11px] uppercase tracking-wider text-[#CBD5E1] hidden sm:inline">
+                <span className="text-[11px] uppercase tracking-wider text-slate-200 hidden sm:inline font-semibold">
                   Mumbai Horizons &amp; Signature Residences
                 </span>
               </div>
@@ -166,7 +168,7 @@ export function BrandFilmModal({
                 <button
                   type="button"
                   onClick={toggleFullscreen}
-                  className="p-1.5 hover:text-[#C5A880] transition-colors"
+                  className="p-1.5 hover:text-[#60A5FA] transition-colors"
                   aria-label="Fullscreen"
                 >
                   <Maximize className="w-4 h-4" />
@@ -177,10 +179,10 @@ export function BrandFilmModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="p-6 bg-[#0A0A0C] border-t border-[#27272A] flex flex-wrap items-center justify-between gap-4">
+        <div className="p-6 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <div className="font-serif text-base text-white">HUM Developers &mdash; Mumbai</div>
-            <div className="text-xs text-[#94A3B8]">
+            <div className="font-heading text-base font-bold text-slate-900">HUM Developers &mdash; Mumbai</div>
+            <div className="text-xs text-slate-500">
               Over 20 Years of Timely Delivery &bull; Kandivali (W) &bull; Borivali (W)
             </div>
           </div>
@@ -192,7 +194,7 @@ export function BrandFilmModal({
                 onClose();
                 onOpenBooking();
               }}
-              className="goldenFilledBtn text-xs py-2.5 px-4"
+              className="brandFilledBtn text-xs py-2.5 px-4"
             >
               <Calendar className="w-3.5 h-3.5 mr-1" />
               Book Private Viewing
@@ -204,7 +206,7 @@ export function BrandFilmModal({
                 onClose();
                 onOpenBrochure();
               }}
-              className="goldenBorderBtn text-xs py-2.5 px-4"
+              className="brandBorderBtn text-xs py-2.5 px-4"
             >
               <Download className="w-3.5 h-3.5 mr-1" />
               Get E-Brochure
@@ -214,7 +216,7 @@ export function BrandFilmModal({
               href="https://wa.me/919920061100?text=Hi%20HUM%20Developers,%20I%20just%20watched%20the%20brand%20film%20and%20would%20like%20to%20inquire%20about%20your%20luxury%20residences."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366] hover:text-black transition-colors rounded-xs text-xs font-semibold uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#25D366] text-white hover:bg-[#20ba59] transition-colors rounded text-xs font-bold uppercase tracking-wider shadow-sm"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               WhatsApp

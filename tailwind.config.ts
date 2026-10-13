@@ -49,16 +49,25 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))"
         },
-        gold: {
-          DEFAULT: "#9B802E",
-          light: "#C5A880",
-          champagne: "#D4AF37",
-          dark: "#7A6320",
-          muted: "rgba(197, 168, 128, 0.2)"
+        brand: {
+          DEFAULT: "#265CA0",
+          dark: "#183C68",
+          darker: "#0F2644",
+          light: "#3A75C4",
+          tint: "#EBF3FC",
+          ice: "#F2F7FD",
+          subtle: "rgba(38, 92, 160, 0.12)"
         },
-        cream: "#FAF8F5",
-        ivory: "#FFFDF4",
-        obsidian: "#0F0F11"
+        gold: {
+          DEFAULT: "#265CA0",
+          light: "#3A75C4",
+          champagne: "#265CA0",
+          dark: "#183C68",
+          muted: "rgba(38, 92, 160, 0.15)"
+        },
+        cream: "#F8FAFC",
+        ivory: "#FFFFFF",
+        obsidian: "#0F172A"
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -66,8 +75,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"],
-        serif: ["var(--font-serif)", "serif"],
+        sans: ["var(--font-sans)", "'Outfit'", "'Plus Jakarta Sans'", "sans-serif"],
+        serif: ["var(--font-heading)", "'Outfit'", "sans-serif"],
+        heading: ["var(--font-heading)", "'Outfit'", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"]
       },
       boxShadow: {

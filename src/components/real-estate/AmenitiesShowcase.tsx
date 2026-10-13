@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight, Sparkles, Dumbbell, Waves, Trees, ShieldCheck, HeartHandshake } from "lucide-react";
 import { luxuryAmenitiesData } from "@/data/units";
 
 export function AmenitiesShowcase() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     "All",
@@ -20,82 +22,126 @@ export function AmenitiesShowcase() {
     return item.category === selectedCategory;
   });
 
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -380, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 380, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section id="amenities" className="py-24 bg-[#0F0F11] border-t border-[#27272A] relative">
+    <section id="amenities" className="py-20 bg-[#F8FAFC] border-t border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-8 h-[1px] bg-[#C5A880]" />
-              <span className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-medium">
-                Lifestyle & Rejuvenation
+              <span className="w-7 h-[2px] bg-[#265CA0]" />
+              <span className="text-xs uppercase tracking-[0.2em] text-[#265CA0] font-bold">
+                LIFESTYLE &amp; REJUVENATION
               </span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl font-light text-white leading-tight">
+            <h2 className="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
               Curated World-Class Amenities
             </h2>
-            <p className="font-sans text-xs sm:text-sm text-[#94A3B8] max-w-xl mt-2 font-light">
-              Elevated podium and rooftop spaces designed to offer tranquility, fitness, and vibrant family celebrations.
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mt-2 font-normal">
+              Elevated podium and rooftop recreation designed for wellness, leisure, and family celebrations.
             </p>
           </div>
 
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
+          {/* Carousel Next / Prev Controls & Category Tabs */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 mr-2">
               <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`text-[11px] uppercase tracking-wider px-3.5 py-1.5 rounded-xs transition-colors ${
-                  selectedCategory === cat
-                    ? "bg-[#C5A880] text-[#0A0A0C] font-semibold"
-                    : "bg-[#141418] text-[#94A3B8] border border-[#27272A] hover:text-white"
-                }`}
+                type="button"
+                onClick={scrollLeft}
+                className="w-10 h-10 rounded-full bg-white border border-slate-200 hover:bg-[#265CA0] hover:text-white text-slate-700 flex items-center justify-center transition-all shadow-sm"
+                aria-label="Scroll amenities left"
               >
-                {cat}
+                <ChevronLeft className="w-5 h-5" />
               </button>
-            ))}
+              <button
+                type="button"
+                onClick={scrollRight}
+                className="w-10 h-10 rounded-full bg-white border border-slate-200 hover:bg-[#265CA0] hover:text-white text-slate-700 flex items-center justify-center transition-all shadow-sm"
+                aria-label="Scroll amenities right"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Amenities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Category Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`text-[11px] uppercase tracking-wider px-4 py-2 rounded-full transition-all font-semibold shrink-0 ${
+                selectedCategory === cat
+                  ? "bg-[#265CA0] text-white shadow-md shadow-[#265CA0]/20"
+                  : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Horizontal Scrolling Amenities Image Carousel */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-6 overflow-x-auto pb-6 scroll-smooth snap-x snap-mandatory scrollbar-none"
+        >
           {filteredAmenities.map((amenity) => (
             <div
               key={amenity.id}
-              className="bg-[#141418] border border-[#27272A] rounded-xs overflow-hidden flex flex-col justify-between group hover:border-[#C5A880]/50 transition-colors"
+              className="min-w-[300px] sm:min-w-[360px] md:min-w-[380px] bg-white border border-slate-200 rounded-lg overflow-hidden snap-start group hover:border-[#265CA0] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="relative h-56 w-full overflow-hidden bg-[#0A0A0C]">
+                {/* High-Resolution Amenity Image */}
+                <div className="relative h-56 sm:h-64 w-full overflow-hidden bg-slate-100">
                   <Image
                     src={amenity.image}
                     alt={amenity.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-103 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-80" />
+
+                  {/* Top Category Badge */}
                   <div className="absolute top-3 left-3">
-                    <span className="px-2 py-0.5 rounded-xs bg-[#0A0A0C]/90 text-[10px] uppercase tracking-wider text-[#C5A880] font-medium border border-[#27272A]">
+                    <span className="px-2.5 py-1 rounded bg-white/95 backdrop-blur-sm text-[10px] uppercase tracking-wider text-[#265CA0] font-bold shadow-sm">
                       {amenity.category}
                     </span>
                   </div>
+
+                  {/* Stat / Scale Pill */}
                   {amenity.stat && (
-                    <div className="absolute top-3 right-3">
-                      <span className="px-2 py-0.5 rounded-xs bg-[#0A0A0C]/90 text-[10px] uppercase tracking-wider text-white border border-[#27272A]">
+                    <div className="absolute bottom-3 left-3">
+                      <span className="px-2.5 py-1 rounded bg-[#265CA0] text-white text-[11px] font-bold shadow-sm">
                         {amenity.stat}
                       </span>
                     </div>
                   )}
                 </div>
 
-                <div className="p-6">
-                  <h3 className="font-serif text-2xl text-white font-normal mb-1">
+                {/* Content (Concise, punchy text) */}
+                <div className="p-5">
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#265CA0] transition-colors mb-1.5">
                     {amenity.title}
                   </h3>
-                  <span className="text-xs text-[#C5A880] block mb-3 font-sans">
+                  <div className="text-[11px] font-semibold text-[#265CA0] uppercase tracking-wider mb-2.5">
                     {amenity.subtitle}
-                  </span>
-                  <p className="text-xs text-[#94A3B8] leading-relaxed">
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
                     {amenity.description}
                   </p>
                 </div>

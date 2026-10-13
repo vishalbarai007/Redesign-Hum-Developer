@@ -8,10 +8,10 @@ export const siteConfig: SiteConfig = {
   ogImage: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
   theme: "premium",
   palette: {
-    primary: "#0A0A0C",
-    secondary: "#141418",
-    accent: "#C5A880",
-    background: "#0A0A0C"
+    primary: "#265CA0",
+    secondary: "#163B66",
+    accent: "#265CA0",
+    background: "#FFFFFF"
   },
   contact: {
     email: "info@humdevelopers.com",

@@ -15,10 +15,8 @@ import {
   ArrowRight,
   Film,
   Building2,
-  CheckCircle2,
-  SlidersHorizontal
+  Maximize2
 } from "lucide-react";
-import { humProjectsData } from "@/data/projects";
 
 interface LuxuryPropertyHeroProps {
   onOpenBooking: () => void;
@@ -29,27 +27,36 @@ interface LuxuryPropertyHeroProps {
 
 const HERO_SCENES = [
   {
+    id: "architecture",
+    title: "Landmark Architecture",
+    type: "video" as const,
+    videoUrl: "https://assets.mixkit.co/videos/4861/4861-720.mp4",
+    posterUrl: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
+    label: "01 • Architectural Grandeur"
+  },
+  {
     id: "skyline",
-    title: "Mumbai Skyline",
+    title: "Mumbai Coastal Horizon",
     type: "video" as const,
     videoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Timelapse_at_Marine_Drive_Mumbai.webm",
-    posterUrl: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
-    label: "01 • Mumbai Skyline (Cinematic)"
+    posterUrl: "https://cdn.sanity.io/images/3wmbb6cw/production/cffe754409c8cee80dd0bafbc1acebf73a314fbd-1440x517.jpg",
+    label: "02 • Mumbai Coastal Skyline"
   },
   {
-    id: "emerald",
-    title: "HUM Emerald Heights",
-    type: "image" as const,
-    imageUrl: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
-    label: "02 • Emerald Heights (Kandivali W)"
-  },
-  {
-    id: "oceanic",
-    title: "Panoramic Living",
+    id: "penthouse",
+    title: "Luxury Penthouse Living",
     type: "video" as const,
-    videoUrl: "https://vjs.zencdn.net/v/oceans.mp4",
+    videoUrl: "https://assets.mixkit.co/videos/5047/5047-720.mp4",
     posterUrl: "https://cdn.sanity.io/images/3wmbb6cw/production/3389b12891977e718ac7bf619b35fad3e5732f28-5166x1892.png",
-    label: "03 • Horizon Living (Borivali W)"
+    label: "03 • Curated Living Spaces"
+  },
+  {
+    id: "urban-vista",
+    title: "Panoramic Sunset Views",
+    type: "video" as const,
+    videoUrl: "https://assets.mixkit.co/videos/4183/4183-720.mp4",
+    posterUrl: "https://cdn.sanity.io/images/3wmbb6cw/production/86f7d0b78a4030c0e90c74c209c15485c29f4676-1440x517.png",
+    label: "04 • Panoramic Horizons"
   }
 ];
 
@@ -63,8 +70,9 @@ export function LuxuryPropertyHero({
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  // Search Bar State (Lodha style)
+  // Property Finder Filter State
   const [searchLocation, setSearchLocation] = useState("All");
   const [searchTypology, setSearchTypology] = useState("All");
   const [searchPossession, setSearchPossession] = useState("All");
@@ -98,6 +106,15 @@ export function LuxuryPropertyHero({
     setIsMuted(!isMuted);
   };
 
+  const toggleFullscreen = () => {
+    if (!sectionRef.current) return;
+    if (!document.fullscreenElement) {
+      sectionRef.current.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  };
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (onFilterChange) {
@@ -111,187 +128,180 @@ export function LuxuryPropertyHero({
 
   return (
     <section
+      ref={sectionRef}
       id="overview"
-      className="relative min-h-[100vh] flex flex-col justify-between pt-24 pb-12 overflow-hidden bg-[#0A0A0C]"
+      className="relative min-h-screen flex flex-col justify-between pt-10 pb-8 overflow-hidden bg-white"
     >
       {/* =========================================================================
-          BACKGROUND MEDIA CANVAS (Cinematic Video + Smooth Architectural Fallback)
+          FULLSCREEN VIDEO BACKGROUND WITH CRISP CINEMATIC OVERLAYS
          ========================================================================= */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {currentScene.type === "video" ? (
-          <video
-            ref={videoRef}
-            key={currentScene.videoUrl}
-            src={currentScene.videoUrl}
-            poster={currentScene.posterUrl}
-            autoPlay
-            loop
-            muted={isMuted}
-            playsInline
-            className="w-full h-full object-cover object-center scale-102 transition-transform duration-1000"
-          />
-        ) : (
-          <Image
-            src={currentScene.imageUrl}
-            alt="HUM Developers Architectural Elevation"
-            fill
-            priority
-            sizes="100vw"
-            className="w-full h-full object-cover object-center transition-all duration-700"
-          />
-        )}
+      <div className="absolute inset-0 -z-10 overflow-hidden bg-slate-900">
+        <video
+          ref={videoRef}
+          key={currentScene.videoUrl}
+          src={currentScene.videoUrl}
+          poster={currentScene.posterUrl}
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          className="w-full h-full object-cover object-center scale-102 transition-transform duration-1000"
+        />
 
-        {/* Lodha-Grade Luxury Obsidian Vignette & Lighting Protection */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/65 to-[#0A0A0C]/50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0C]/90 via-[#0A0A0C]/40 to-transparent" />
-        <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#0A0A0C]/30 to-[#0A0A0C]/80" />
+        {/* Crisp Luxury Gradient Protection for Maximum Typography Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/50 to-transparent" />
       </div>
 
       {/* =========================================================================
-          TOP EYEBROW & AMBIENT CONTROLS
+          TOP CONTROLS & RERA TRUST BADGE
          ========================================================================= */}
-      <div className="max-w-7xl mx-auto px-6 w-full pt-6">
+      <div className="max-w-7xl mx-auto px-6 w-full pt-4">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          {/* MahaRERA & Location Stamp */}
+          {/* MahaRERA Trust Capsule */}
           <div className="flex flex-wrap items-center gap-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#141418]/90 border border-[#C5A880]/40 rounded-xs backdrop-blur-md">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#C5A880]" />
-              <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A880] font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/90 backdrop-blur-md border border-white/60 rounded-full shadow-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#265CA0]" />
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#265CA0] font-bold">
                 MahaRERA: PM1180002502952 &bull; Registered
               </span>
             </div>
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#141418]/90 border border-[#27272A] rounded-xs text-[10px] uppercase tracking-wider text-[#CBD5E1] backdrop-blur-md">
-              <MapPin className="w-3 h-3 text-[#C5A880]" />
-              Kandivali (W) &bull; Borivali (W) &bull; Mumbai
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-900/60 backdrop-blur-md border border-white/20 rounded-full text-[10px] uppercase tracking-wider text-slate-200">
+              <MapPin className="w-3 h-3 text-[#3A75C4]" />
+              Kandivali (W) &bull; Borivali (W)
             </div>
           </div>
 
-          {/* Ambient Video & Audio Controls (Lodha Style) */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#141418]/80 border border-[#27272A] rounded-xs backdrop-blur-md text-xs text-[#CBD5E1]">
-            {currentScene.type === "video" && (
-              <>
-                <button
-                  type="button"
-                  onClick={togglePlay}
-                  className="p-1 hover:text-[#C5A880] transition-colors"
-                  aria-label={isPlaying ? "Pause video" : "Play video"}
-                  title={isPlaying ? "Pause Video" : "Play Video"}
-                >
-                  {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-                </button>
-                <span className="text-[#334155]">|</span>
-                <button
-                  type="button"
-                  onClick={toggleMute}
-                  className="p-1 hover:text-[#C5A880] transition-colors"
-                  aria-label={isMuted ? "Unmute audio" : "Mute audio"}
-                  title={isMuted ? "Unmute Sound" : "Mute Sound"}
-                >
-                  {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#C5A880]" />}
-                </button>
-                <span className="text-[#334155]">|</span>
-              </>
-            )}
-
+          {/* Fullscreen Video & Audio Controls */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-md border border-white/60 rounded-full text-xs text-slate-800 shadow-sm font-medium">
+            <button
+              type="button"
+              onClick={togglePlay}
+              className="p-1 hover:text-[#265CA0] transition-colors"
+              aria-label={isPlaying ? "Pause video" : "Play video"}
+              title={isPlaying ? "Pause Video" : "Play Video"}
+            >
+              {isPlaying ? <Pause className="w-3.5 h-3.5 text-[#265CA0]" /> : <Play className="w-3.5 h-3.5 fill-current text-[#265CA0]" />}
+            </button>
+            <span className="text-slate-300">|</span>
+            <button
+              type="button"
+              onClick={toggleMute}
+              className="p-1 hover:text-[#265CA0] transition-colors"
+              aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+              title={isMuted ? "Unmute Audio" : "Mute Audio"}
+            >
+              {isMuted ? <VolumeX className="w-3.5 h-3.5 text-slate-500" /> : <Volume2 className="w-3.5 h-3.5 text-[#265CA0]" />}
+            </button>
+            <span className="text-slate-300">|</span>
+            <button
+              type="button"
+              onClick={toggleFullscreen}
+              className="p-1 hover:text-[#265CA0] transition-colors"
+              title="Fullscreen Mode"
+            >
+              <Maximize2 className="w-3.5 h-3.5 text-slate-700" />
+            </button>
+            <span className="text-slate-300">|</span>
             <button
               type="button"
               onClick={onOpenBrandFilm}
-              className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-[#C5A880] hover:text-white transition-colors font-medium pl-1"
+              className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-[#265CA0] hover:text-[#183C68] transition-colors font-bold pl-1"
             >
               <Film className="w-3 h-3" />
-              Watch Brand Film
+              Brand Film
             </button>
           </div>
         </div>
       </div>
 
       {/* =========================================================================
-          MAIN EDITORIAL HERO HEADLINE & SCENE SWITCHER
+          HERO HEADLINE & VIDEO SCENE SWITCHER (Outfit Logo Font)
          ========================================================================= */}
-      <div className="max-w-7xl mx-auto px-6 w-full my-auto py-10">
-        {/* Interactive Scene Switcher (Lodha Experience Tour) */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none">
+      <div className="max-w-7xl mx-auto px-6 w-full my-auto py-8">
+        {/* Interactive Video Scene Selector */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-5 scrollbar-none">
           {HERO_SCENES.map((scene, idx) => (
             <button
               key={scene.id}
               onClick={() => setActiveSceneIndex(idx)}
-              className={`text-[10px] uppercase tracking-wider px-3.5 py-1.5 rounded-xs transition-all duration-200 shrink-0 flex items-center gap-2 ${
+              className={`text-[10px] uppercase tracking-wider px-3.5 py-1.5 rounded-full transition-all duration-200 shrink-0 flex items-center gap-2 ${
                 activeSceneIndex === idx
-                  ? "bg-[#C5A880] text-[#0A0A0C] font-semibold shadow-lg shadow-[#C5A880]/20"
-                  : "bg-[#141418]/80 text-[#94A3B8] border border-[#27272A] hover:text-white backdrop-blur-sm"
+                  ? "bg-[#265CA0] text-white font-bold shadow-lg shadow-[#265CA0]/30"
+                  : "bg-white/80 text-slate-800 hover:bg-white backdrop-blur-sm border border-white/40 font-semibold"
               }`}
             >
-              <span className={`w-1.5 h-1.5 rounded-full ${activeSceneIndex === idx ? "bg-[#0A0A0C]" : "bg-[#C5A880]"}`} />
+              <span className={`w-1.5 h-1.5 rounded-full ${activeSceneIndex === idx ? "bg-white" : "bg-[#265CA0]"}`} />
               {scene.label}
             </button>
           ))}
         </div>
 
-        {/* High-Impact Lodha-Style Typography */}
-        <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <span className="w-8 h-[1px] bg-[#C5A880]" />
-            <span className="font-sans text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#C5A880] font-semibold">
-              The Art of Landmark Living
+        {/* Punchy Typography in Outfit Logo Font (Reduced Text Content) */}
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2.5 mb-3">
+            <span className="w-7 h-[2px] bg-[#3A75C4]" />
+            <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-white font-bold drop-shadow">
+              HUM DEVELOPERS &bull; MUMBAI
             </span>
           </div>
 
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white tracking-tight leading-[1.04] mb-6">
-            Building Dreams. <br />
-            <span className="italic font-light text-[#C5A880]">Shaping Legacies.</span>
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-4 drop-shadow-md">
+            BUILDING DREAMS. <br />
+            <span className="text-[#60A5FA]">SHAPING LEGACIES.</span>
           </h1>
 
-          <p className="font-sans text-sm sm:text-base md:text-lg text-[#CBD5E1] font-light max-w-2xl leading-relaxed mb-8">
-            Distinguished residential landmarks across Mumbai&rsquo;s western corridor. Engineered with zero space wastage,
-            breathtaking panoramic vistas, and curated rooftop recreation clubs for over 10,000 satisfied families.
+          <p className="text-sm sm:text-base md:text-lg text-slate-200 font-normal max-w-2xl leading-relaxed mb-7 drop-shadow">
+            Curated 1, 2 &amp; 3 BHK luxury residences across Mumbai’s prime western corridor.
+            Zero space wastage, panoramic horizon views, and rooftop lifestyle recreation.
           </p>
 
           {/* Primary Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3.5 mb-10">
+          <div className="flex flex-wrap items-center gap-3.5 mb-8">
             <button
               type="button"
               onClick={onOpenBooking}
-              className="goldenFilledBtn text-xs py-3.5 px-6 shadow-xl"
+              className="brandFilledBtn text-xs py-3.5 px-7 shadow-xl shadow-[#265CA0]/40"
             >
-              <Calendar className="w-3.5 h-3.5 mr-1" />
+              <Calendar className="w-4 h-4 mr-1.5" />
               Schedule Private Viewing
             </button>
 
             <button
               type="button"
               onClick={onOpenBrochure}
-              className="goldenBorderBtn text-xs py-3.5 px-6 shadow-xl"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#265CA0] hover:bg-slate-100 font-bold text-xs uppercase tracking-wider rounded-sm transition-all shadow-lg"
             >
-              <Download className="w-3.5 h-3.5 mr-1" />
+              <Download className="w-4 h-4 text-[#265CA0]" />
               Download Master Brochure
             </button>
 
             <button
               type="button"
               onClick={onOpenBrandFilm}
-              className="inline-flex items-center gap-2 px-5 py-3.5 bg-[#141418]/80 border border-[#27272A] text-white hover:border-[#C5A880] hover:text-[#C5A880] transition-colors rounded-xs text-xs uppercase tracking-wider font-medium backdrop-blur-md"
+              className="inline-flex items-center gap-2 px-5 py-3.5 bg-slate-900/70 border border-white/30 text-white hover:bg-white hover:text-[#265CA0] transition-colors rounded-sm text-xs uppercase tracking-wider font-semibold backdrop-blur-md"
             >
-              <Play className="w-3.5 h-3.5 fill-current text-[#C5A880]" />
-              Experience Film (2 Min)
+              <Play className="w-3.5 h-3.5 fill-current text-[#60A5FA]" />
+              Experience Film
             </button>
           </div>
         </div>
 
         {/* =========================================================================
-            LODHA-STYLE FLOATING QUICK SEARCH & PROPERTY FINDER
+            WHITE GLASS PROPERTY FINDER SEARCH BAR
            ========================================================================= */}
-        <div className="mt-4 bg-[#141418]/95 border border-[#27272A] hover:border-[#C5A880]/30 transition-colors p-4 sm:p-5 rounded-xs backdrop-blur-xl shadow-2xl">
+        <div className="bg-white/95 backdrop-blur-xl border border-slate-200 p-4 sm:p-5 rounded-lg shadow-2xl max-w-5xl">
           <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
             {/* Location Select */}
             <div>
-              <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-medium mb-1.5">
+              <label className="block text-[10px] uppercase tracking-wider text-slate-600 font-bold mb-1.5">
                 Location
               </label>
               <select
                 value={searchLocation}
                 onChange={(e) => setSearchLocation(e.target.value)}
-                className="w-full bg-[#0A0A0C] border border-[#27272A] text-white text-xs px-3 py-2.5 rounded-xs focus:outline-none focus:border-[#C5A880] transition-colors"
+                className="w-full bg-[#F8FAFC] border border-slate-300 text-slate-800 font-semibold text-xs px-3 py-2.5 rounded focus:outline-none focus:border-[#265CA0] transition-colors"
               >
                 <option value="All">All Locations (Mumbai)</option>
                 <option value="Kandivali">Kandivali (West)</option>
@@ -301,16 +311,16 @@ export function LuxuryPropertyHero({
 
             {/* Typology Select */}
             <div>
-              <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-medium mb-1.5">
+              <label className="block text-[10px] uppercase tracking-wider text-slate-600 font-bold mb-1.5">
                 Configuration
               </label>
               <select
                 value={searchTypology}
                 onChange={(e) => setSearchTypology(e.target.value)}
-                className="w-full bg-[#0A0A0C] border border-[#27272A] text-white text-xs px-3 py-2.5 rounded-xs focus:outline-none focus:border-[#C5A880] transition-colors"
+                className="w-full bg-[#F8FAFC] border border-slate-300 text-slate-800 font-semibold text-xs px-3 py-2.5 rounded focus:outline-none focus:border-[#265CA0] transition-colors"
               >
                 <option value="All">All Typologies</option>
-                <option value="1BHK">1 BHK Luxury</option>
+                <option value="1BHK">1 BHK Smart Luxe</option>
                 <option value="2BHK">2 &amp; 2.5 BHK Residences</option>
                 <option value="3BHK">3 BHK &amp; Jodi Apartments</option>
               </select>
@@ -318,13 +328,13 @@ export function LuxuryPropertyHero({
 
             {/* Possession Timeline */}
             <div>
-              <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-medium mb-1.5">
+              <label className="block text-[10px] uppercase tracking-wider text-slate-600 font-bold mb-1.5">
                 Possession Status
               </label>
               <select
                 value={searchPossession}
                 onChange={(e) => setSearchPossession(e.target.value)}
-                className="w-full bg-[#0A0A0C] border border-[#27272A] text-white text-xs px-3 py-2.5 rounded-xs focus:outline-none focus:border-[#C5A880] transition-colors"
+                className="w-full bg-[#F8FAFC] border border-slate-300 text-slate-800 font-semibold text-xs px-3 py-2.5 rounded focus:outline-none focus:border-[#265CA0] transition-colors"
               >
                 <option value="All">All Timelines</option>
                 <option value="Dec 2026">Dec 2026</option>
@@ -337,9 +347,9 @@ export function LuxuryPropertyHero({
             <div className="pt-2 sm:pt-4">
               <button
                 type="submit"
-                className="w-full goldenFilledBtn text-xs py-3 px-4 justify-center"
+                className="w-full brandFilledBtn text-xs py-3 px-4 justify-center"
               >
-                <Search className="w-3.5 h-3.5 mr-1" />
+                <Search className="w-3.5 h-3.5 mr-1.5" />
                 Explore 5 Residences
               </button>
             </div>
@@ -348,39 +358,39 @@ export function LuxuryPropertyHero({
       </div>
 
       {/* =========================================================================
-          LODHA-GRADE 20+ YEARS LEGACY & PERFORMANCE TICKER
+          KEY CREDIBILITY STAT TICKER (White Frosted Cards)
          ========================================================================= */}
-      <div className="max-w-7xl mx-auto px-6 w-full pt-8 border-t border-[#1E1E24]">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="flex items-start gap-3">
-            <span className="font-serif text-3xl sm:text-4xl text-[#C5A880] font-normal leading-none">20+</span>
+      <div className="max-w-7xl mx-auto px-6 w-full pt-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-white/90 backdrop-blur-md border border-slate-200/80 p-3.5 rounded-lg flex items-center gap-3 shadow-sm">
+            <span className="font-heading text-2xl sm:text-3xl text-[#265CA0] font-black leading-none">20+</span>
             <div>
-              <div className="text-xs text-white font-medium">Years of Excellence</div>
-              <div className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Since 2004 in Mumbai</div>
+              <div className="text-xs text-slate-900 font-bold">Years of Excellence</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-wider">Since 2004 in Mumbai</div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <span className="font-serif text-3xl sm:text-4xl text-white font-normal leading-none">10K+</span>
+          <div className="bg-white/90 backdrop-blur-md border border-slate-200/80 p-3.5 rounded-lg flex items-center gap-3 shadow-sm">
+            <span className="font-heading text-2xl sm:text-3xl text-slate-900 font-black leading-none">10K+</span>
             <div>
-              <div className="text-xs text-white font-medium">Delighted Families</div>
-              <div className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Across Kandivali &amp; Borivali</div>
+              <div className="text-xs text-slate-900 font-bold">Delighted Families</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-wider">Kandivali &amp; Borivali</div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <span className="font-serif text-3xl sm:text-4xl text-white font-normal leading-none">5M+</span>
+          <div className="bg-white/90 backdrop-blur-md border border-slate-200/80 p-3.5 rounded-lg flex items-center gap-3 shadow-sm">
+            <span className="font-heading text-2xl sm:text-3xl text-[#265CA0] font-black leading-none">5M+</span>
             <div>
-              <div className="text-xs text-white font-medium">Sq.Ft. Realized</div>
-              <div className="text-[10px] text-[#94A3B8] uppercase tracking-wider">Delivered &amp; Active Sites</div>
+              <div className="text-xs text-slate-900 font-bold">Sq.Ft. Realized</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-wider">Delivered Sites</div>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <span className="font-serif text-3xl sm:text-4xl text-[#C5A880] font-normal leading-none">100%</span>
+          <div className="bg-white/90 backdrop-blur-md border border-slate-200/80 p-3.5 rounded-lg flex items-center gap-3 shadow-sm">
+            <span className="font-heading text-2xl sm:text-3xl text-slate-900 font-black leading-none">100%</span>
             <div>
-              <div className="text-xs text-white font-medium">MahaRERA Compliant</div>
-              <div className="text-[10px] text-[#94A3B8] uppercase tracking-wider">On-Time Handover Track</div>
+              <div className="text-xs text-slate-900 font-bold">MahaRERA Verified</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-wider">On-Time Execution</div>
             </div>
           </div>
         </div>

@@ -7,41 +7,41 @@ import { faqsData } from "@/data/faqs";
 
 export function HumFaqAccordion() {
   return (
-    <section id="faqs" className="py-24 bg-[#0F0F11] border-t border-[#27272A] relative">
+    <section id="faqs" className="py-20 bg-[#F8FAFC] border-t border-slate-200 relative">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-14">
+        <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-6 h-[1px] bg-[#C5A880]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-medium">
-              Clarifications & Advisory
+            <span className="w-6 h-[2px] bg-[#265CA0]" />
+            <span className="text-xs uppercase tracking-[0.2em] text-[#265CA0] font-bold">
+              TRANSPARENCY &amp; ADVISORY
             </span>
-            <span className="w-6 h-[1px] bg-[#C5A880]" />
+            <span className="w-6 h-[2px] bg-[#265CA0]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-light text-white leading-tight">
-            Frequently Addressed Queries
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Frequently Asked Questions
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#94A3B8] mt-2 font-light">
-            Everything you need to know about our MahaRERA compliance, financing tie-ups, and handover procedures.
+          <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
+            Key details about our MahaRERA compliance, home loan tie-ups, and handover procedures.
           </p>
         </div>
 
-        <Accordion.Root type="single" collapsible className="space-y-4">
+        <Accordion.Root type="single" collapsible className="space-y-3.5">
           {faqsData.map((faq) => (
             <Accordion.Item
               key={faq.id}
               value={faq.id}
-              className="bg-[#141418] border border-[#27272A] rounded-xs px-6 py-2 transition-colors data-[state=open]:border-[#C5A880]/50"
+              className="bg-white border border-slate-200 rounded-lg px-6 py-1.5 transition-all data-[state=open]:border-[#265CA0] shadow-sm data-[state=open]:shadow-md"
             >
               <Accordion.Header>
                 <Accordion.Trigger className="w-full py-4 flex items-center justify-between text-left group">
-                  <span className="font-serif text-lg sm:text-xl text-white group-hover:text-[#C5A880] transition-colors pr-4 font-normal">
+                  <span className="font-heading text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#265CA0] transition-colors pr-4">
                     {faq.question}
                   </span>
-                  <ChevronDown className="w-4 h-4 text-[#C5A880] transition-transform duration-300 group-data-[state=open]:rotate-180 shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-[#265CA0] transition-transform duration-300 group-data-[state=open]:rotate-180 shrink-0" />
                 </Accordion.Trigger>
               </Accordion.Header>
 
-              <Accordion.Content className="pb-5 text-xs sm:text-sm text-[#94A3B8] leading-relaxed font-light border-t border-[#27272A] pt-4 animate-in fade-in duration-200">
+              <Accordion.Content className="pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal border-t border-slate-100 pt-3 animate-in fade-in duration-200">
                 {faq.answer}
               </Accordion.Content>
             </Accordion.Item>

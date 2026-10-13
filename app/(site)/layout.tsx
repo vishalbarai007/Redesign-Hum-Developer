@@ -26,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="bg-[#0A0A0C] text-[#F8FAFC] min-h-screen flex flex-col selection:bg-[#C5A880] selection:text-black">
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-white text-[#0F172A] min-h-screen flex flex-col selection:bg-[#265CA0] selection:text-white font-sans">
         <SmoothScrollProvider>
           {children}
-          <Toaster position="bottom-right" theme="dark" richColors />
+          <Toaster position="bottom-right" theme="light" richColors />
         </SmoothScrollProvider>
       </body>
     </html>

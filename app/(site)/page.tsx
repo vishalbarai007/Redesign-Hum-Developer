@@ -7,6 +7,7 @@ import { EditorialPhilosophy } from "@/components/real-estate/EditorialPhilosoph
 import { ProjectsShowcase } from "@/components/real-estate/ProjectsShowcase";
 import { UnitInventory } from "@/components/real-estate/UnitInventory";
 import { AmenitiesShowcase } from "@/components/real-estate/AmenitiesShowcase";
+import { LivingExperienceCarousel } from "@/components/real-estate/LivingExperienceCarousel";
 import { ConnectivitySection } from "@/components/real-estate/ConnectivitySection";
 import { ServicesPillars } from "@/components/real-estate/ServicesPillars";
 import { HumTestimonials } from "@/components/real-estate/HumTestimonials";
@@ -36,12 +37,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0A0A0C] text-[#F8FAFC]">
+    <div className="flex flex-col min-h-screen bg-white text-slate-900 font-sans">
       {/* Top Navbar */}
       <LuxuryNavbar onOpenBooking={() => handleOpenBooking()} />
 
       <main className="flex-1">
-        {/* Lodha-Inspired Cinematic Video Hero with Property Search */}
+        {/* Fullscreen Video Hero with Multi-Scene Switcher & Property Search */}
         <LuxuryPropertyHero
           onOpenBooking={() => handleOpenBooking()}
           onOpenBrochure={() => handleOpenBrochure()}
@@ -49,21 +50,24 @@ export default function HomePage() {
           onFilterChange={(filter) => setProjectFilter(filter)}
         />
 
-        {/* 20+ Years Legacy & Heritage Story */}
+        {/* 20+ Years Heritage & Values (Reduced text, visual pillars) */}
         <EditorialPhilosophy />
 
-        {/* Interactive Landmark Projects Portfolio */}
+        {/* Interactive Landmark Projects Portfolio with Multi-Image Sliders */}
         <ProjectsShowcase
           onOpenBooking={handleOpenBooking}
           onOpenBrochure={handleOpenBrochure}
           externalFilter={projectFilter}
         />
 
-        {/* Residences & Zoomable Blueprint Lightbox Modal */}
+        {/* Curated Residences & Zoomable Blueprint Plans */}
         <UnitInventory onOpenBooking={handleOpenBooking} />
 
-        {/* Curated World-Class Amenities Grid */}
+        {/* Curated World-Class Amenities Image Carousel Slider */}
         <AmenitiesShowcase />
+
+        {/* Master Living Experience & Lifestyle Gallery Carousel */}
+        <LivingExperienceCarousel />
 
         {/* Strategic Mumbai Connectivity & Travel Times */}
         <ConnectivitySection />
@@ -81,7 +85,7 @@ export default function HomePage() {
         <HumContactSection />
       </main>
 
-      {/* Luxury Footer with MahaRERA disclosures */}
+      {/* Luxury White Footer with MahaRERA disclosures */}
       <Footer />
 
       {/* Interactive Booking & Appointment Drawer Modal */}
@@ -98,7 +102,7 @@ export default function HomePage() {
         defaultProject={activeModalProject}
       />
 
-      {/* Cinematic Brand Film Player Modal (Lodha Experience) */}
+      {/* Cinematic Brand Film Player Modal */}
       <BrandFilmModal
         isOpen={isBrandFilmOpen}
         onClose={() => setIsBrandFilmOpen(false)}

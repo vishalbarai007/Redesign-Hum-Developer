@@ -1,56 +1,67 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Star, Quote } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonialsData } from "@/data/testimonials";
 
 export function HumTestimonials() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonialsData.length);
+  };
+
   return (
-    <section className="py-24 bg-[#0A0A0C] border-t border-[#27272A] relative">
+    <section className="py-20 bg-white border-t border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 mb-2">
-            <span className="w-6 h-[1px] bg-[#C5A880]" />
-            <span className="text-xs uppercase tracking-[0.25em] text-[#C5A880] font-medium">
-              Homeowner Reflections
+            <span className="w-6 h-[2px] bg-[#265CA0]" />
+            <span className="text-xs uppercase tracking-[0.2em] text-[#265CA0] font-bold">
+              VERIFIED HOMEOWNER REVIEWS
             </span>
-            <span className="w-6 h-[1px] bg-[#C5A880]" />
+            <span className="w-6 h-[2px] bg-[#265CA0]" />
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-light text-white leading-tight">
-            Endorsed by Over 10,000 Families
+          <h2 className="font-heading text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Trusted by 10,000+ Families
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-[#94A3B8] mt-2 font-light">
-            Genuine experiences from residents who trusted HUM Developers with their life’s greatest milestone.
+          <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
+            Real reflections from proud homeowners across Kandivali and Borivali West.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonialsData.map((t) => (
+        {/* Testimonials Carousel Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonialsData.map((t, idx) => (
             <div
               key={t.id}
-              className="bg-[#141418] border border-[#27272A] rounded-xs p-8 flex flex-col justify-between hover:border-[#C5A880]/40 transition-colors"
+              className="bg-[#F8FAFC] border border-slate-200 rounded-lg p-6 sm:p-7 flex flex-col justify-between hover:border-[#265CA0] hover:shadow-lg transition-all duration-300"
             >
               <div>
-                <div className="flex gap-1 text-[#C5A880] mb-5">
+                <div className="flex gap-1 text-amber-500 mb-4">
                   {[...Array(t.rating || 5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current text-[#C5A880]" />
+                    <Star key={i} className="w-4 h-4 fill-current text-amber-500" />
                   ))}
                 </div>
 
-                <p className="text-[#CBD5E1] text-xs sm:text-sm italic leading-relaxed mb-6 font-light">
+                <p className="text-slate-700 text-xs sm:text-sm leading-relaxed mb-6 font-normal">
                   &ldquo;{t.quote}&rdquo;
                 </p>
               </div>
 
-              <div className="flex items-center gap-3.5 pt-5 border-t border-[#27272A]">
-                <div className="relative w-11 h-11 rounded-full overflow-hidden border border-[#27272A] shrink-0">
+              <div className="flex items-center gap-3.5 pt-4 border-t border-slate-200/80">
+                <div className="relative w-11 h-11 rounded-full overflow-hidden border border-slate-300 shrink-0">
                   <Image src={t.avatarUrl} alt={t.authorName} fill className="object-cover" />
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-white tracking-wide">{t.authorName}</div>
-                  <div className="text-[10px] text-[#94A3B8]">{t.authorRole}</div>
-                  <div className="text-[10px] text-[#C5A880]">{t.company}</div>
+                  <div className="text-xs font-bold text-slate-900">{t.authorName}</div>
+                  <div className="text-[10px] text-slate-500 font-medium">{t.authorRole}</div>
+                  <div className="text-[10px] text-[#265CA0] font-semibold">{t.company}</div>
                 </div>
               </div>
             </div>

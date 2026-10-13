@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,38 +6,38 @@
 
 @layer base {
   :root {
-    --background: 240 10% 4%; /* #0A0A0C Solid Deep Obsidian */
-    --foreground: 210 40% 98%; /* #F8FAFC Solid Pure White */
+    --background: 0 0% 100%; /* Pure Crisp White */
+    --foreground: 222 47% 11%; /* #0F172A Deep Navy Text */
 
-    --card: 240 9% 7%; /* #111115 Solid Card Dark */
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%; /* #FFFFFF Solid White */
+    --card-foreground: 222 47% 11%;
 
-    --popover: 240 9% 7%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 38 42% 64%; /* #C5A880 Champagne Gold */
-    --primary-foreground: 240 10% 4%;
+    --primary: 213 62% 39%; /* #265CA0 Iconic HUM Logo Blue */
+    --primary-foreground: 0 0% 100%; /* Pure White */
 
-    --secondary: 240 6% 12%; /* #1E1E24 Solid Elevated Surface */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%; /* #F1F5F9 Soft Light Surface */
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 240 6% 15%;
-    --muted-foreground: 215 16% 65%; /* #94A3B8 */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%; /* #64748B Slate */
 
-    --accent: 38 42% 64%; /* #C5A880 Champagne Gold */
-    --accent-foreground: 240 10% 4%;
+    --accent: 213 62% 39%; /* #265CA0 */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 63% 31%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 240 6% 16%; /* Solid Hairline Border */
-    --input: 240 6% 16%;
-    --ring: 38 42% 64%;
+    --border: 214.3 31.8% 91.4%; /* #E2E8F0 Subtle Clean Border */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 213 62% 39%;
 
-    --radius: 0.25rem;
+    --radius: 0.375rem;
 
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-serif: 'Cormorant Garamond', Georgia, "Times New Roman", serif;
+    --font-sans: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-heading: 'Outfit', sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 }
@@ -47,112 +47,142 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-[#C5A880] selection:text-black;
+    @apply bg-background text-foreground antialiased selection:bg-[#265CA0] selection:text-white;
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-color: #0A0A0C;
-    color: #F8FAFC;
+    background-color: #FFFFFF;
+    color: #0F172A;
   }
-  h1, h2, h3, h4, .font-editorial {
-    font-family: var(--font-serif);
+  h1, h2, h3, h4, .font-heading, .font-serif, .font-editorial {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
   }
   html {
     scroll-behavior: smooth;
-    background-color: #0A0A0C;
+    background-color: #FFFFFF;
   }
 }
 
-/* Subtle luxury scrollbar */
+/* Subtle Modern Clean Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0C;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272A;
-  border-radius: 3px;
+  background: #CBD5E1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C5A880;
+  background: #265CA0;
 }
 
-/* Premium Solid Luxury Button Styles (Zero Gradients) */
-.goldenLineBtn {
+/* Brand Button Styles (HUM Logo Royal Blue Palette) */
+.brandFilledBtn, .goldenFilledBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background-color: #265CA0;
+  border: 1px solid #265CA0;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 14px 0 rgba(38, 92, 160, 0.35);
+  transition: all 0.25s ease;
+}
+.brandFilledBtn:hover, .goldenFilledBtn:hover {
+  background-color: #183C68;
+  border-color: #183C68;
+  box-shadow: 0 6px 20px 0 rgba(24, 60, 104, 0.4);
+  transform: translateY(-1px);
+}
+
+.brandBorderBtn, .goldenBorderBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #265CA0;
+  background-color: #FFFFFF;
+  border: 1.5px solid #265CA0;
+  border-radius: 0.25rem;
+  transition: all 0.25s ease;
+}
+.brandBorderBtn:hover, .goldenBorderBtn:hover {
+  color: #FFFFFF;
+  background-color: #265CA0;
+  border-color: #265CA0;
+  box-shadow: 0 4px 12px 0 rgba(38, 92, 160, 0.25);
+  transform: translateY(-1px);
+}
+
+.brandLightBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #265CA0;
+  background-color: #EBF3FC;
+  border: 1px solid rgba(38, 92, 160, 0.15);
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+.brandLightBtn:hover {
+  background-color: #DCEBFA;
+  color: #183C68;
+}
+
+.brandLineBtn, .goldenLineBtn {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #C5A880;
-  transition: all 0.3s ease;
+  color: #265CA0;
+  transition: all 0.25s ease;
   padding-bottom: 3px;
 }
-.goldenLineBtn::after {
+.brandLineBtn::after, .goldenLineBtn::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 1px;
-  background-color: #C5A880;
+  height: 2px;
+  background-color: #265CA0;
   transform: scaleX(0.4);
   transform-origin: left;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.25s ease;
 }
-.goldenLineBtn:hover::after {
+.brandLineBtn:hover::after, .goldenLineBtn:hover::after {
   transform: scaleX(1);
-  background-color: #FFFFFF;
 }
-.goldenLineBtn:hover {
-  color: #FFFFFF;
-}
-
-.goldenBorderBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #C5A880;
-  background-color: transparent;
-  border: 1px solid rgba(197, 168, 128, 0.45);
-  transition: all 0.25s ease;
-}
-.goldenBorderBtn:hover {
-  color: #0A0A0C;
-  background-color: #C5A880;
-  border-color: #C5A880;
-}
-
-.goldenFilledBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #0A0A0C;
-  background-color: #C5A880;
-  border: 1px solid #C5A880;
-  transition: all 0.25s ease;
-}
-.goldenFilledBtn:hover {
-  background-color: #D4AF37;
-  border-color: #D4AF37;
+.brandLineBtn:hover, .goldenLineBtn:hover {
+  color: #183C68;
 }
 
 .secondarySolidBtn {
@@ -163,16 +193,17 @@
   padding: 0.75rem 1.5rem;
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #F8FAFC;
-  background-color: #1A1A22;
-  border: 1px solid #2E2E38;
-  transition: all 0.25s ease;
+  color: #0F172A;
+  background-color: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
 }
 .secondarySolidBtn:hover {
-  background-color: #272732;
-  border-color: #C5A880;
-  color: #C5A880;
+  background-color: #E2E8F0;
+  border-color: #CBD5E1;
+  color: #265CA0;
 }
