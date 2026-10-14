@@ -30,8 +30,14 @@ export function MinimalVIPConciergeDesk({ onOpenBrochure }: MinimalVIPConciergeD
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.phone) {
+    if (!formData.fullName.trim() || !formData.phone.trim()) {
       toast.error("Please enter your name and phone number");
+      return;
+    }
+
+    const cleanPhone = formData.phone.replace(/[^0-9]/g, "") || "inquiry";
+    if (cleanPhone.length < 7) {
+      toast.error("Please provide a valid phone number (at least 7 digits).");
       return;
     }
 
@@ -39,8 +45,9 @@ export function MinimalVIPConciergeDesk({ onOpenBrochure }: MinimalVIPConciergeD
     try {
       const res = await submitContactForm({
         fullName: formData.fullName,
-        email: `${formData.phone.replace(/[^0-9]/g, "")}@hum-enquiry.com`,
+        email: `${cleanPhone}@hum-enquiry.com`,
         phone: formData.phone,
+        service: `VIP Site Visit - ${formData.project}`,
         message: `Direct site visit request for ${formData.project}`
       });
 
@@ -54,7 +61,7 @@ export function MinimalVIPConciergeDesk({ onOpenBrochure }: MinimalVIPConciergeD
           project: "HUM Emerald Heights (Kandivali W)"
         });
       } else {
-        toast.error("Unable to submit. Please call +91 99200 61100 directly.");
+        toast.error(res.message || "Unable to submit. Please call +91 99200 61100 directly.");
       }
     } catch {
       toast.error("Submission error. Please call +91 99200 61100 directly.");

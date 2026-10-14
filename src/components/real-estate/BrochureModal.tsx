@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X, Download, ShieldCheck, CheckCircle2, Loader2, Phone, Mail, User } from "lucide-react";
 import { humProjectsData } from "@/data/projects";
@@ -13,6 +13,12 @@ interface BrochureModalProps {
 
 export function BrochureModal({ isOpen, onClose, defaultProject }: BrochureModalProps) {
   const [selectedProject, setSelectedProject] = useState(defaultProject || humProjectsData[0].name);
+
+  useEffect(() => {
+    if (defaultProject) {
+      setSelectedProject(defaultProject);
+    }
+  }, [defaultProject]);
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");

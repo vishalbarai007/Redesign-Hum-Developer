@@ -86,9 +86,10 @@ export function Sobha3ImageParallax({ onOpenBooking }: Sobha3ImageParallaxProps)
   return (
     <section
       ref={containerRef}
-      id="heritage"
+      id="philosophy"
       className="py-24 sm:py-32 bg-[#F8FAFC] text-slate-900 border-b border-slate-200 relative overflow-hidden"
     >
+      <div id="heritage" className="absolute top-0" />
       <div className="max-w-7xl mx-auto px-6">
         {/* Minimalist Editorial Headline (Sobha Privy Style) */}
         <div className="text-center max-w-3xl mx-auto mb-16">

@@ -8,21 +8,43 @@ import { RealEstateUnit } from "@/data/units";
 
 interface FloorPlanModalProps {
   unit: RealEstateUnit;
-  onOpenBooking?: (unitName: string) => void;
+  onOpenBooking?: (unitName?: string) => void;
+  isOpen?: boolean;
+  onClose?: () => void;
+  trigger?: React.ReactNode;
 }
 
-export function FloorPlanModal({ unit, onOpenBooking }: FloorPlanModalProps) {
+export function FloorPlanModal({
+  unit,
+  onOpenBooking,
+  isOpen,
+  onClose,
+  trigger
+}: FloorPlanModalProps) {
+  const isControlled = typeof isOpen === "boolean";
+
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button
-          type="button"
-          className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#265CA0] hover:text-[#183C68] transition-colors"
-        >
-          <ZoomIn className="w-3.5 h-3.5 text-[#265CA0]" />
-          View Blueprint &amp; Floor Plan
-        </button>
-      </Dialog.Trigger>
+    <Dialog.Root
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open && onClose) {
+          onClose();
+        }
+      }}
+    >
+      {!isControlled && (
+        <Dialog.Trigger asChild>
+          {trigger || (
+            <button
+              type="button"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#265CA0] hover:text-[#183C68] transition-colors"
+            >
+              <ZoomIn className="w-3.5 h-3.5 text-[#265CA0]" />
+              View Blueprint &amp; Floor Plan
+            </button>
+          )}
+        </Dialog.Trigger>
+      )}
 
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 animate-in fade-in duration-200" />
@@ -107,7 +129,10 @@ export function FloorPlanModal({ unit, onOpenBooking }: FloorPlanModalProps) {
               {onOpenBooking && (
                 <button
                   type="button"
-                  onClick={() => onOpenBooking(unit.name)}
+                  onClick={() => {
+                    if (onClose) onClose();
+                    onOpenBooking(unit.name);
+                  }}
                   className="brandFilledBtn text-xs py-2.5 px-5"
                 >
                   <Calendar className="w-3.5 h-3.5 mr-1" />

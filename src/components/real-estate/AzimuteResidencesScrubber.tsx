@@ -2,16 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import {
-  Compass,
-  Maximize2,
-  Calendar,
-  Layers,
-  Sparkles,
-  Check,
-  ShieldCheck,
-  ArrowRight
-} from "lucide-react";
+import { Maximize2, Calendar, Check } from "lucide-react";
 import { unitsData, RealEstateUnit } from "@/data/units";
 import { FloorPlanModal } from "./FloorPlanModal";
 
@@ -111,7 +102,7 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
             </div>
 
             <div className="text-[11px] text-slate-400 text-center font-medium">
-              *Architectural plan illustrative. Subject to MahaRERA registration PM1180002502952.
+              *Architectural plan illustrative. Subject to MahaRERA registration {currentUnit.reraRegistration}.
             </div>
           </div>
 

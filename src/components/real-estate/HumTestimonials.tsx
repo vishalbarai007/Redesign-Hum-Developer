@@ -1,20 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import { testimonialsData } from "@/data/testimonials";
 
 export function HumTestimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? testimonialsData.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonialsData.length);
-  };
 
   return (
     <section className="py-20 bg-white border-t border-slate-200 relative">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { X, Play, Pause, Volume2, VolumeX, Maximize, Calendar, Download, Phone, MessageSquare } from "lucide-react";
+import { X, Play, Pause, Volume2, VolumeX, Maximize, Calendar, Download, MessageSquare } from "lucide-react";
 
 interface BrandFilmModalProps {
   isOpen: boolean;

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Sparkles, Dumbbell, Waves, Trees, ShieldCheck, HeartHandshake } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { luxuryAmenitiesData } from "@/data/units";
 
 export function AmenitiesShowcase() {

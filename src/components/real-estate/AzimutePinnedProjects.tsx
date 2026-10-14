@@ -6,14 +6,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   MapPin,
-  ShieldCheck,
   Calendar,
   Download,
-  ArrowRight,
   ChevronLeft,
-  ChevronRight,
-  Layers,
-  Sparkles
+  ChevronRight
 } from "lucide-react";
 import { humProjectsData, HumProject } from "@/data/projects";
 

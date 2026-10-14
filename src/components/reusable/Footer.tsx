@@ -115,13 +115,27 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Legal Copyright */}
+        {/* Bottom Legal Copyright & Links */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>
-            &copy; {new Date().getFullYear()} HUM Developers. All rights reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <p>
+              &copy; {new Date().getFullYear()} HUM Developers. All rights reserved.
+            </p>
+            <span className="text-slate-300 hidden sm:inline">&bull;</span>
+            <div className="flex items-center gap-3">
+              {footerNavItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="hover:text-[#265CA0] transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
 
-          <p className="text-[11px] text-slate-500 text-center sm:text-right max-w-xl">
+          <p className="text-[11px] text-slate-500 text-center sm:text-right max-w-md">
             Disclaimer: The imagery, 3D renderings, walkthroughs, and specifications shown are artistic impressions and indicative for representation purposes only.
           </p>
         </div>

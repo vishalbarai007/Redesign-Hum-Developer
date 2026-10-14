@@ -70,9 +70,10 @@ export function DayNightExperienceSlider({ onOpenBooking }: DayNightExperienceSl
 
   return (
     <section
-      id="living-experience"
+      id="gallery"
       className="py-24 bg-[#0F172A] text-white border-b border-slate-800 relative overflow-hidden"
     >
+      <div id="living-experience" className="absolute top-0" />
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Strip */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">

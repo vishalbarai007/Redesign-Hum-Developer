@@ -20,7 +20,7 @@ export const siteConfig: SiteConfig = {
     socials: {
       instagram: "https://www.instagram.com/humdevelopers",
       linkedin: "https://www.linkedin.com/company/hum-developers-pvt-ltd/",
-      twitter: "https://www.facebook.com/share/14JzTVqibyp/?mibextid=wwXIfr"
+      facebook: "https://www.facebook.com/share/14JzTVqibyp/?mibextid=wwXIfr"
     }
   }
 };

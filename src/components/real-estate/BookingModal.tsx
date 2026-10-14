@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X, Calendar, ShieldCheck, CheckCircle2, Loader2, Phone, Mail, User, Building2 } from "lucide-react";
 import { humProjectsData } from "@/data/projects";
@@ -13,6 +13,12 @@ interface BookingModalProps {
 
 export function BookingModal({ isOpen, onClose, defaultProject }: BookingModalProps) {
   const [selectedProject, setSelectedProject] = useState(defaultProject || humProjectsData[0].name);
+
+  useEffect(() => {
+    if (defaultProject) {
+      setSelectedProject(defaultProject);
+    }
+  }, [defaultProject]);
   const [date, setDate] = useState("");
   const [timeSlot, setTimeSlot] = useState("11:00 AM - 01:00 PM");
   const [fullName, setFullName] = useState("");

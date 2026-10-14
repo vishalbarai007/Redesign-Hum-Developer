@@ -25,6 +25,7 @@ export interface SiteConfig {
       instagram?: string;
       linkedin?: string;
       twitter?: string;
+      facebook?: string;
       github?: string;
     };
   };
