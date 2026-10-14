@@ -2,17 +2,15 @@
 
 import React, { useState } from "react";
 import { LuxuryNavbar } from "@/components/real-estate/LuxuryNavbar";
-import { LuxuryPropertyHero } from "@/components/real-estate/LuxuryPropertyHero";
-import { EditorialPhilosophy } from "@/components/real-estate/EditorialPhilosophy";
-import { ProjectsShowcase } from "@/components/real-estate/ProjectsShowcase";
-import { UnitInventory } from "@/components/real-estate/UnitInventory";
-import { AmenitiesShowcase } from "@/components/real-estate/AmenitiesShowcase";
-import { LivingExperienceCarousel } from "@/components/real-estate/LivingExperienceCarousel";
-import { ConnectivitySection } from "@/components/real-estate/ConnectivitySection";
-import { ServicesPillars } from "@/components/real-estate/ServicesPillars";
-import { HumTestimonials } from "@/components/real-estate/HumTestimonials";
+import { SobhaHeroParallax } from "@/components/real-estate/SobhaHeroParallax";
+import { Sobha3ImageParallax } from "@/components/real-estate/Sobha3ImageParallax";
+import { AzimutePinnedProjects } from "@/components/real-estate/AzimutePinnedProjects";
+import { AzimuteResidencesScrubber } from "@/components/real-estate/AzimuteResidencesScrubber";
+import { DayNightExperienceSlider } from "@/components/real-estate/DayNightExperienceSlider";
+import { AmenitiesMomentumScrub } from "@/components/real-estate/AmenitiesMomentumScrub";
+import { MinimalTransitRadar } from "@/components/real-estate/MinimalTransitRadar";
 import { HumFaqAccordion } from "@/components/real-estate/HumFaqAccordion";
-import { HumContactSection } from "@/components/real-estate/HumContactSection";
+import { MinimalVIPConciergeDesk } from "@/components/real-estate/MinimalVIPConciergeDesk";
 import { Footer } from "@/components/reusable/Footer";
 import { BookingModal } from "@/components/real-estate/BookingModal";
 import { BrochureModal } from "@/components/real-estate/BrochureModal";
@@ -23,7 +21,6 @@ export default function HomePage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isBrochureOpen, setIsBrochureOpen] = useState(false);
   const [isBrandFilmOpen, setIsBrandFilmOpen] = useState(false);
-  const [projectFilter, setProjectFilter] = useState<string>("All");
   const [activeModalProject, setActiveModalProject] = useState<string | undefined>(undefined);
 
   const handleOpenBooking = (projectOrUnit?: string) => {
@@ -37,55 +34,47 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white text-slate-900 font-sans">
-      {/* Top Navbar */}
+    <div className="flex flex-col min-h-screen bg-white text-slate-900 font-sans selection:bg-[#265CA0] selection:text-white">
+      {/* 1. Pristine Brand Navbar */}
       <LuxuryNavbar onOpenBooking={() => handleOpenBooking()} />
 
       <main className="flex-1">
-        {/* Fullscreen Video Hero with Multi-Scene Switcher & Property Search */}
-        <LuxuryPropertyHero
-          onOpenBooking={() => handleOpenBooking()}
-          onOpenBrochure={() => handleOpenBrochure()}
-          onOpenBrandFilm={() => setIsBrandFilmOpen(true)}
-          onFilterChange={(filter) => setProjectFilter(filter)}
-        />
-
-        {/* 20+ Years Heritage & Values (Reduced text, visual pillars) */}
-        <EditorialPhilosophy />
-
-        {/* Interactive Landmark Projects Portfolio with Multi-Image Sliders */}
-        <ProjectsShowcase
+        {/* 2. Sobha-Style Fullscreen Cinematic Parallax Hero */}
+        <SobhaHeroParallax
           onOpenBooking={handleOpenBooking}
           onOpenBrochure={handleOpenBrochure}
-          externalFilter={projectFilter}
+          onOpenBrandFilm={() => setIsBrandFilmOpen(true)}
         />
 
-        {/* Curated Residences & Zoomable Blueprint Plans */}
-        <UnitInventory onOpenBooking={handleOpenBooking} />
+        {/* 3. Sobha-Style 3-Image Multi-Plane Parallax (Heritage & 4 Big Metrics) */}
+        <Sobha3ImageParallax onOpenBooking={() => handleOpenBooking()} />
 
-        {/* Curated World-Class Amenities Image Carousel Slider */}
-        <AmenitiesShowcase />
+        {/* 4. Azimute-Style Horizontal Pinned Projects Scrubber (5 Signature Developments) */}
+        <AzimutePinnedProjects
+          onOpenBooking={handleOpenBooking}
+          onOpenBrochure={handleOpenBrochure}
+        />
 
-        {/* Master Living Experience & Lifestyle Gallery Carousel */}
-        <LivingExperienceCarousel />
+        {/* 5. Azimute-Style Curated Residences & Interactive Blueprint Explorer */}
+        <AzimuteResidencesScrubber onOpenBooking={handleOpenBooking} />
 
-        {/* Strategic Mumbai Connectivity & Travel Times */}
-        <ConnectivitySection />
+        {/* 6. Day vs. Twilight Living Experience Perspective Switcher */}
+        <DayNightExperienceSlider onOpenBooking={handleOpenBooking} />
 
-        {/* Development Capabilities & Redevelopment Pillars */}
-        <ServicesPillars onOpenBooking={() => handleOpenBooking()} />
+        {/* 7. World-Class Amenities Momentum Carousel */}
+        <AmenitiesMomentumScrub />
 
-        {/* Homeowner Reflections & Verified Testimonials */}
-        <HumTestimonials />
+        {/* 8. Strategic Western Suburban Mumbai Transit Radar */}
+        <MinimalTransitRadar />
 
-        {/* Frequently Addressed Queries (RERA, Loans, Handover) */}
+        {/* 9. Minimalist Transparency FAQs Accordion */}
         <HumFaqAccordion />
 
-        {/* Direct Developer Contact & Site Visit Booking Desk */}
-        <HumContactSection />
+        {/* 10. Direct Developer VIP Consultation Desk */}
+        <MinimalVIPConciergeDesk onOpenBrochure={() => handleOpenBrochure()} />
       </main>
 
-      {/* Luxury White Footer with MahaRERA disclosures */}
+      {/* 11. Luxury White Footer with MahaRERA Disclosures */}
       <Footer />
 
       {/* Interactive Booking & Appointment Drawer Modal */}
