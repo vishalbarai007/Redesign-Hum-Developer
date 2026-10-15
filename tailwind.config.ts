@@ -75,9 +75,10 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "'Outfit'", "'Plus Jakarta Sans'", "sans-serif"],
-        serif: ["var(--font-heading)", "'Outfit'", "sans-serif"],
-        heading: ["var(--font-heading)", "'Outfit'", "sans-serif"],
+        sans: ["var(--font-sans)", "'Plus Jakarta Sans'", "sans-serif"],
+        serif: ["var(--font-heading)", "'Cormorant Garamond'", "Georgia", "serif"],
+        heading: ["var(--font-heading)", "'Cormorant Garamond'", "Georgia", "serif"],
+        editorial: ["'Cormorant Garamond'", "Georgia", "serif"],
         mono: ["var(--font-mono)", "monospace"]
       },
       boxShadow: {

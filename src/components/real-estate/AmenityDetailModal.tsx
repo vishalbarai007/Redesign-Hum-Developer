@@ -229,7 +229,7 @@ export function AmenityDetailModal({
                           <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#93C5FD] font-bold block mb-1">
                             {currentAmenity.category}
                           </span>
-                          <h4 className="font-heading text-xl sm:text-2xl font-black uppercase text-white drop-shadow">
+                          <h4 className="font-heading text-xl sm:text-2xl font-black uppercase text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.85)]">
                             {currentAmenity.name}
                           </h4>
                         </div>

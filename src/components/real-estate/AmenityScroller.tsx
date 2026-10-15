@@ -6,17 +6,17 @@ import { ArrowUpRight } from "lucide-react";
 import { humAmenitiesData } from "@/data/amenities";
 import { AmenityDetailModal, HumAmenity } from "./AmenityDetailModal";
 
-interface AzimutePinnedProjectsProps {
+interface AmenityScrollerProps {
   onOpenBooking?: (amenityName?: string) => void;
   onOpenBrochure?: (amenityName?: string) => void;
   selectedFilter?: string;
 }
 
-export function AzimutePinnedProjects({
+export function AmenityScroller({
   onOpenBooking,
   onOpenBrochure,
   selectedFilter = "All"
-}: AzimutePinnedProjectsProps) {
+}: AmenityScrollerProps) {
   const [selectedAmenity, setSelectedAmenity] = useState<HumAmenity | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -80,7 +80,7 @@ export function AzimutePinnedProjects({
             <div
               key={`${amenity.id}-${idx}`}
               onClick={() => handleCardClick(amenity)}
-              className="relative shrink-0 w-[300px] sm:w-[380px] md:w-[440px] h-[460px] sm:h-[520px] md:h-[580px] rounded-none overflow-hidden cursor-pointer group/card bg-slate-900 border border-white/15 shadow-xl transition-all duration-300 hover:border-white hover:shadow-2xl"
+              className="relative shrink-0 w-[300px] sm:w-[380px] md:w-[440px] h-[460px] sm:h-[520px] md:h-[580px] rounded-none overflow-hidden cursor-pointer group/card bg-slate-900 border border-white/15 shadow-xl transition-all duration-300 hover:border-white hover:shadow-2xl [transform:translateZ(0)] [backface-visibility:hidden]"
             >
               {/* Card Image */}
               <Image
@@ -99,7 +99,7 @@ export function AzimutePinnedProjects({
                 <div className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#93C5FD] font-bold mb-1">
                   {amenity.category}
                 </div>
-                <h3 className="font-heading text-2xl sm:text-3xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md">
+                <h3 className="font-heading text-2xl sm:text-3xl font-black text-white uppercase tracking-tight leading-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.85)]">
                   {amenity.name}
                 </h3>
               </div>
@@ -141,5 +141,7 @@ export function AzimutePinnedProjects({
   );
 }
 
-// Named alias for semantic clarity
-export const AzimutePinnedAmenities = AzimutePinnedProjects;
+// Named aliases for backwards compatibility
+export default AmenityScroller;
+export const AzimutePinnedProjects = AmenityScroller;
+export const AzimutePinnedAmenities = AmenityScroller;

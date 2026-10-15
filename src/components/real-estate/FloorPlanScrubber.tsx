@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
-  ChevronLeft,
-  ChevronRight,
+  // ChevronLeft,
+  // ChevronRight,
   Maximize2,
   X,
   ArrowUpRight,
@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface AzimuteResidencesScrubberProps {
+interface FloorPlanScrubberProps {
   onOpenBooking?: (unitName?: string) => void;
 }
 
@@ -66,7 +66,7 @@ const FLOOR_PLAN_SLIDES: FloorPlanSlide[] = [
   },
 ];
 
-export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesScrubberProps) {
+export function FloorPlanScrubber({ onOpenBooking }: FloorPlanScrubberProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState<1 | -1>(1);
@@ -101,17 +101,17 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
   return (
     <section
       id="residences"
-      className="relative w-full h-screen min-h-[720px] md:h-[100vh] bg-white text-slate-900 overflow-hidden flex flex-col justify-between py-6 sm:py-8 px-4 sm:px-8 lg:px-12 select-none"
+      className="relative w-full h-screen min-h-[720px] md:h-[100vh] text-slate-900 overflow-hidden flex flex-col justify-between py-6 sm:py-8 px-4 sm:px-8 lg:px-12 select-none"
     >
       {/* =========================================================================
           BACKGROUND DESIGN: WHITE BG WITH LOW-OPACITY TEXTURE BG.PNG & OVERLAY LAYER
          ========================================================================= */}
       {/* 1. Base White */}
-      <div className="absolute inset-0 bg-white -z-20 pointer-events-none" />
+      <div className="absolute inset-0 -z-20 pointer-events-none" />
 
       {/* 2. Texture bg.png with low opacity */}
       <div
-        className="absolute inset-0 pointer-events-none -z-10"
+        className="absolute inset-0 pointer-events-none z-10"
         style={{
           backgroundImage: `url('/Image/bg.png')`,
           backgroundRepeat: "repeat",
@@ -120,8 +120,6 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
         }}
       />
 
-      {/* 3. Layer over texture so upper texts and sections look prominently */}
-      <div className="absolute inset-0 bg-white/70 backdrop-blur-[1px] pointer-events-none -z-10" />
 
       {/* =========================================================================
           TOP HEADER: MINIMAL TEXT WITH CHAPTER & INTERACTIVE SECTION SWITCHER TABS
@@ -179,7 +177,7 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
           className="absolute left-2 sm:left-4 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-[#265CA0] hover:text-white text-slate-800 border border-slate-200 shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer group"
           aria-label="Previous layout"
         >
-          <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
+          {/* <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" /> */}
         </button>
 
         {/* Right Navigation Arrow */}
@@ -189,7 +187,7 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
           className="absolute right-2 sm:right-4 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-[#265CA0] hover:text-white text-slate-800 border border-slate-200 shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer group"
           aria-label="Next layout"
         >
-          <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
+          {/* <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" /> */}
         </button>
 
         {/* Interactive Center Stage Card */}
@@ -265,9 +263,7 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
               />
             ))}
           </div>
-          <span className="text-[11px] text-slate-400 hidden sm:inline-block">
-            (Auto-rotates at 2s • Hover to inspect)
-          </span>
+         
         </div>
 
         {/* Direct CTA Button in Theme Deep Blue */}
@@ -346,3 +342,6 @@ export function AzimuteResidencesScrubber({ onOpenBooking }: AzimuteResidencesSc
     </section>
   );
 }
+
+export default FloorPlanScrubber;
+export const AzimuteResidencesScrubber = FloorPlanScrubber;

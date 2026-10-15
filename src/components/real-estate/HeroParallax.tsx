@@ -9,8 +9,8 @@ import {
   Slide
 } from "@/components/ui/aperture-carousel";
 
-interface SobhaHeroParallaxProps {
-  onOpenBooking: (projectName?: string) => void;
+interface HeroParallaxProps {
+  onOpenBooking?: (projectName?: string) => void;
   onOpenBrochure?: (projectName?: string) => void;
   onOpenBrandFilm?: () => void;
   onSelectProject?: (slug: string) => void;
@@ -18,102 +18,101 @@ interface SobhaHeroParallaxProps {
 
 /**
  * 5 Full-Bleed Slides:
- * Slide 0: High-Impact Photography "Shaping Mumbai's Tomorrow" (5s autoplay)
- * Slide 1–4: Autoplaying Muted Videos for Emerald Heights, Solaris, Durga, and GS Heights
+ * Slide 0: High-Impact Photography "HUM Emerald Heights"
+ * Slide 1–4: Autoplaying Muted Videos for 1 BHK, 2 BHK, 3 BHK, and Grand Living Salon
  */
 const HERO_SLIDES: Slide[] = [
   {
     image: "https://cdn.sanity.io/images/3wmbb6cw/production/98cb2c2d4f9a75bfb71f3458d5036e9fc0b98c47-2000x1125.jpg",
-    title: "Shaping Mumbai's Tomorrow",
-    caption: "Discover landmark projects crafted with state-of-the-art amenities for a modern lifestyle.",
-    alt: "Shaping Mumbai's Tomorrow - Hum Developers",
-    projectId: "mumbai-vision",
+    title: "HUM Emerald Heights",
+    caption: "Kandivali West, Mumbai · Experience Elevated Living Across 1, 2, 2.5 & 3 BHK Luxury Residences.",
+    alt: "HUM Emerald Heights Luxury Residences",
+    projectId: "emerald-overview",
   },
   {
     video: "https://assets.mixkit.co/videos/4861/4861-720.mp4",
-    poster: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
-    title: "Hum Emerald Heights",
-    caption: "Chembur, Mumbai · 1, 2 & 3 BHK Luxury Residences from ₹89 Lakhs*",
-    alt: "Hum Emerald Heights",
-    projectId: "hum-emerald-heights",
+    poster: "/Image/1bhk.png",
+    title: "1 BHK Smart Luxe Suite",
+    caption: "Thoughtfully planned living & dining salon with zero space wastage, master bedroom, and panoramic French windows.",
+    alt: "1 BHK Smart Luxe Suite - HUM Emerald",
+    projectId: "1bhk-suite",
   },
   {
     video: "https://assets.mixkit.co/videos/5047/5047-720.mp4",
-    poster: "https://cdn.sanity.io/images/3wmbb6cw/production/86f7d0b78a4030c0e90c74c209c15485c29f4676-1440x517.png",
-    title: "Hum Solaris",
-    caption: "Ghatkopar East, Mumbai · 2 & 3 BHK High-Rise Panoramic Living from ₹1.38 Cr*",
-    alt: "Hum Solaris",
-    projectId: "hum-solaris",
+    poster: "/Image/2bhk.png",
+    title: "2 BHK Grand Family Residence",
+    caption: "Expansive layout featuring dual sunlit balconies, private master sanctuary, children's bedroom, and modular kitchen.",
+    alt: "2 BHK Grand Family Residence - HUM Emerald",
+    projectId: "2bhk-residence",
   },
   {
     video: "https://assets.mixkit.co/videos/4183/4183-720.mp4",
-    poster: "https://cdn.sanity.io/images/3wmbb6cw/production/7761cb98db9659b20149a3df2c377374d055bdd0-5166x1892.png",
-    title: "Hum Durga",
-    caption: "Santacruz East, Mumbai · 2 & 3 BHK Sophisticated Homes from ₹1.42 Cr*",
-    alt: "Hum Durga",
-    projectId: "hum-durga",
+    poster: "/Image/3bhk.png",
+    title: "3 BHK Presidential Sky Residence",
+    caption: "Palatial multi-generational living with 3 en-suite bedrooms, sweeping skyline views, and bespoke luxury finishes.",
+    alt: "3 BHK Presidential Sky Residence - HUM Emerald",
+    projectId: "3bhk-presidential",
   },
   {
-    video: "https://assets.mixkit.co/videos/4861/4861-720.mp4",
-    poster: "https://cdn.sanity.io/images/3wmbb6cw/production/dc5c3a6c0549738a8293add4be371768a4164ea4-1440x517.jpg",
-    title: "Hum GS Heights",
-    caption: "Kurla West, Mumbai · 2 & 3 BHK Twin Towers Connected Living from ₹1.50 Cr*",
-    alt: "Hum GS Heights",
-    projectId: "gs-heights",
+    video: "https://assets.mixkit.co/videos/43525/43525-720.mp4",
+    poster: "https://cdn.sanity.io/images/3wmbb6cw/production/98cb2c2d4f9a75bfb71f3458d5036e9fc0b98c47-2000x1125.jpg",
+    title: "Luxury Living & Dining Salon",
+    caption: "Sophisticated open-concept entertainment space with designer Italian marble flooring and ambient mood lighting.",
+    alt: "Luxury Living Salon - HUM Emerald",
+    projectId: "living-salon",
   },
 ];
 
 /**
- * Static Bottom Navigation Switcher Projects (Always visible & interactive)
+ * Static Bottom Navigation Switcher Configurations (HUM Emerald Rooms)
  */
-const HERO_PROJECTS = [
+const HERO_CONFIGURATIONS = [
   {
-    id: "hum-emerald-heights",
-    name: "HUM Emerald Heights",
-    shortName: "Emerald Heights",
-    location: "Chembur, Mumbai",
-    config: "1, 2, 2.5 & 3 BHK",
-    price: "From ₹89 Lakhs*",
-    image: "https://cdn.sanity.io/images/3wmbb6cw/production/78b671926f9f490fab0b5a1730fa753696667c2a-2000x732.jpg",
+    id: "1bhk-suite",
+    name: "1 BHK Smart Luxe",
+    shortName: "1 BHK Suite",
+    area: "465 Sq.Ft. Carpet",
+    tagline: "Smart Space Engineered",
+    image: "/Image/1bhk.png",
+    slideIndex: 1,
   },
   {
-    id: "hum-solaris",
-    name: "HUM Solaris",
-    shortName: "Solaris",
-    location: "Ghatkopar East, Mumbai",
-    config: "2 & 3 BHK High-Rise",
-    price: "From ₹1.38 Cr*",
-    image: "https://cdn.sanity.io/images/3wmbb6cw/production/86f7d0b78a4030c0e90c74c209c15485c29f4676-1440x517.png",
+    id: "2bhk-residence",
+    name: "2 BHK Grand Family",
+    shortName: "2 BHK Grand",
+    area: "680 Sq.Ft. Carpet",
+    tagline: "Dual Balconies",
+    image: "/Image/2bhk.png",
+    slideIndex: 2,
   },
   {
-    id: "hum-durga",
-    name: "HUM Durga",
-    shortName: "Durga",
-    location: "Santacruz East, Mumbai",
-    config: "2 & 3 BHK Luxury",
-    price: "From ₹1.42 Cr*",
-    image: "https://cdn.sanity.io/images/3wmbb6cw/production/7761cb98db9659b20149a3df2c377374d055bdd0-5166x1892.png",
+    id: "3bhk-presidential",
+    name: "3 BHK Presidential",
+    shortName: "3 BHK Sky Suite",
+    area: "950 Sq.Ft. Carpet",
+    tagline: "3 En-Suite Bedrooms",
+    image: "/Image/3bhk.png",
+    slideIndex: 3,
   },
   {
-    id: "gs-heights",
-    name: "HUM GS Heights",
-    shortName: "GS Heights",
-    location: "Kurla West, Mumbai",
-    config: "2 & 3 BHK Twin Towers",
-    price: "From ₹1.50 Cr*",
-    image: "https://cdn.sanity.io/images/3wmbb6cw/production/dc5c3a6c0549738a8293add4be371768a4164ea4-1440x517.jpg",
+    id: "living-salon",
+    name: "Grand Living Salon",
+    shortName: "Living & Dining",
+    area: "Double-Height Vibe",
+    tagline: "Italian Marble Finish",
+    image: "https://cdn.sanity.io/images/3wmbb6cw/production/98cb2c2d4f9a75bfb71f3458d5036e9fc0b98c47-2000x1125.jpg",
+    slideIndex: 4,
   },
 ];
 
-export function SobhaHeroParallax({
+export function HeroParallax({
   onSelectProject
-}: SobhaHeroParallaxProps) {
+}: HeroParallaxProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const carouselRef = useRef<ApertureCarouselHandle>(null);
 
-  const handleSelectThumbnail = (idx: number, id: string) => {
-    // Project 0 corresponds to slide 1 (since slide 0 is "Shaping Mumbai's Tomorrow")
-    carouselRef.current?.goTo(idx + 1);
+  const handleSelectThumbnail = (slideIndex: number, id: string) => {
+    carouselRef.current?.goTo(slideIndex);
     if (onSelectProject) {
       onSelectProject(id);
     }
@@ -165,45 +164,45 @@ export function SobhaHeroParallax({
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 pb-4 sm:pb-6 w-full flex flex-col md:flex-row items-center justify-between gap-5  pt-4">
-            {/* 4 Big Project Thumbnails Switcher */}
+            {/* 4 HUM Emerald Suite & Room Thumbnails Switcher */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 w-full md:w-auto">
-              {HERO_PROJECTS.map((proj, idx) => {
-                const isCurrentProject = activeSlideIndex === idx + 1;
+              {HERO_CONFIGURATIONS.map((config) => {
+                const isCurrent = activeSlideIndex === config.slideIndex;
                 return (
                   <button
-                    key={proj.id}
+                    key={config.id}
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleSelectThumbnail(idx, proj.id);
+                      handleSelectThumbnail(config.slideIndex, config.id);
                     }}
                     className={`text-left p-2 sm:p-2.5 rounded-lg transition-all duration-300 flex items-center gap-2.5 sm:gap-3 border backdrop-blur-md cursor-pointer ${
-                      isCurrentProject
-                        ? "bg-[#265CA0]/35 border-[#265CA0] shadow-[0_0_20px_rgba(38,92,160,0.5)] ring-1 ring-[#265CA0]"
+                      isCurrent
+                        ? "bg-[#265CA0]/40 border-[#265CA0] shadow-[0_0_20px_rgba(38,92,160,0.6)] ring-1 ring-[#265CA0]"
                         : "bg-white/5 border-white/10 hover:bg-white/15 hover:border-white/25"
                     }`}
                   >
-                    <div className="relative w-11 h-9 sm:w-12 sm:h-10 rounded overflow-hidden shrink-0 border border-white/10">
+                    <div className="relative w-11 h-9 sm:w-12 sm:h-10 rounded overflow-hidden shrink-0 border border-white/10 bg-slate-900">
                       <Image
-                        src={proj.image}
-                        alt={proj.name}
+                        src={config.image}
+                        alt={config.name}
                         fill
                         className="object-cover"
                         sizes="60px"
                       />
-                      {isCurrentProject && (
+                      {isCurrent && (
                         <div className="absolute inset-0 bg-[#265CA0]/30 mix-blend-overlay" />
                       )}
                     </div>
                     <div className="min-w-0 pr-1">
-                      <div className="text-[11px] sm:text-xs font-bold text-white truncate flex items-center gap-1.5">
-                        <span>{proj.shortName}</span>
-                        {isCurrentProject && (
+                      <div className="text-[11px] sm:text-xs font-bold text-white truncate flex items-center gap-1.5 font-sans">
+                        <span>{config.shortName}</span>
+                        {isCurrent && (
                           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
                         )}
                       </div>
-                      <div className="text-[10px] text-white/60 truncate">
-                        {proj.location.split(",")[0]}
+                      <div className="text-[10px] text-white/70 truncate font-sans">
+                        {config.area}
                       </div>
                     </div>
                   </button>
@@ -231,4 +230,5 @@ export function SobhaHeroParallax({
   );
 }
 
-export default SobhaHeroParallax;
+export default HeroParallax;
+export { HeroParallax as SobhaHeroParallax };

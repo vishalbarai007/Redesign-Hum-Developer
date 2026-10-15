@@ -6,15 +6,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, Award, ShieldCheck, Clock, Users, ArrowUpRight } from "lucide-react";
 
-interface OurStorySectionProps {
+interface AboutHumDeveloperProps {
   onOpenBooking?: (projectName?: string) => void;
   onOpenBrochure?: (projectName?: string) => void;
 }
 
-export function OurStorySection({
+export function AboutHumDeveloper({
   onOpenBooking,
   onOpenBrochure
-}: OurStorySectionProps) {
+}: AboutHumDeveloperProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -88,19 +88,19 @@ export function OurStorySection({
             </div>
 
             {/* Headline matching Website Signature Typography */}
-            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight uppercase leading-[1.15] mb-4">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-900 tracking-tight leading-[1.12] mb-5">
               Transforming Spaces, Enriching Lives
             </h2>
 
-            {/* Body Paragraph matching Website Font & Slate Palette */}
-            <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed mb-7 max-w-xl">
-              For Over Two decades, we have evolved from a Boutique Developer to one of the trusted names
-              in Real estate, with our portfolio spanning Residential,
-              Commercial, and Mixed-used developments.
-
-              Our commitment to Architectural Excellence, Sustainable practices, and Customer-centric approach has earned
-              us the trust of over 2000 families and recognition from industry peers.
-            </p>
+            {/* Body Paragraph matching Website Font & Slate Palette with bold highlights */}
+            <div className="space-y-4 text-sm sm:text-base text-slate-600 font-normal leading-relaxed mb-8 max-w-xl font-sans">
+              <p>
+                For <strong className="font-bold text-slate-900">over two decades</strong>, we have evolved from a <strong className="font-bold text-slate-900">boutique developer</strong> to one of the most trusted names in Mumbai real estate, with a landmark portfolio spanning residential, commercial, and mixed-use developments.
+              </p>
+              <p>
+                Our commitment to <strong className="font-bold text-slate-900">architectural excellence</strong>, sustainable practices, and a customer-centric philosophy has earned us the trust of <strong className="font-bold text-slate-900">over 2,000 families</strong> and enduring recognition across the industry.
+              </p>
+            </div>
 
             {/* CTA Button: Similar to 'Explore Lobby' in Deep Blue Color */}
             <div>
@@ -219,3 +219,6 @@ export function OurStorySection({
     </>
   );
 }
+
+export default AboutHumDeveloper;
+export { AboutHumDeveloper as OurStorySection };

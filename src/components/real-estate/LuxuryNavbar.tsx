@@ -222,7 +222,7 @@ export function LuxuryNavbar({ onOpenBooking }: LuxuryNavbarProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[100] w-screen h-screen overflow-y-auto bg-gradient-to-br from-[#1E4D88] via-[#265CA0] to-[#123158] text-white flex flex-col justify-between selection:bg-white selection:text-[#265CA0]"
+            className="fixed inset-0 z-[100] w-screen h-screen overflow-y-auto bg-gradient-to-br from-[#0F172A] to-[#1E4D88] text-white flex flex-col justify-between selection:bg-white selection:text-[#265CA0]"
           >
             {/* Subtle Architectural Watermark Background Pattern */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.04] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
