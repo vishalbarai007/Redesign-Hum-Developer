@@ -5,6 +5,7 @@ import { LuxuryNavbar } from "@/components/real-estate/LuxuryNavbar";
 import { SobhaHeroParallax } from "@/components/real-estate/SobhaHeroParallax";
 import { Sobha3ImageParallax } from "@/components/real-estate/Sobha3ImageParallax";
 import { AzimutePinnedProjects } from "@/components/real-estate/AzimutePinnedProjects";
+import { OurStorySection } from "@/components/real-estate/OurStorySection";
 import { AzimuteResidencesScrubber } from "@/components/real-estate/AzimuteResidencesScrubber";
 import { DayNightExperienceSlider } from "@/components/real-estate/DayNightExperienceSlider";
 import { AmenitiesMomentumScrub } from "@/components/real-estate/AmenitiesMomentumScrub";
@@ -39,21 +40,26 @@ export default function HomePage() {
       <LuxuryNavbar onOpenBooking={() => handleOpenBooking()} />
 
       <main className="flex-1">
-        {/* 2. Sobha-Style Fullscreen Cinematic Parallax Hero */}
         <SobhaHeroParallax
           onOpenBooking={handleOpenBooking}
           onOpenBrochure={handleOpenBrochure}
           onOpenBrandFilm={() => setIsBrandFilmOpen(true)}
         />
 
-        {/* 3. Sobha-Style 3-Image Multi-Plane Parallax (Heritage & 4 Big Metrics) */}
+        <OurStorySection
+          onOpenBooking={handleOpenBooking}
+          onOpenBrochure={handleOpenBrochure}
+        />
+
+
         <Sobha3ImageParallax onOpenBooking={() => handleOpenBooking()} />
 
-        {/* 4. Azimute-Style Horizontal Pinned Projects Scrubber (5 Signature Developments) */}
         <AzimutePinnedProjects
           onOpenBooking={handleOpenBooking}
           onOpenBrochure={handleOpenBrochure}
         />
+
+        {/* 4. Our Story — Elevating the Everyday */}
 
         {/* 5. Azimute-Style Curated Residences & Interactive Blueprint Explorer */}
         <AzimuteResidencesScrubber onOpenBooking={handleOpenBooking} />
@@ -100,7 +106,7 @@ export default function HomePage() {
       />
 
       {/* Persistent Floating Viewing Scheduler FAB */}
-      <FloatingBookingFab onOpenBooking={() => handleOpenBooking()} />
+      {/* <FloatingBookingFab onOpenBooking={() => handleOpenBooking()} /> */}
     </div>
   );
 }

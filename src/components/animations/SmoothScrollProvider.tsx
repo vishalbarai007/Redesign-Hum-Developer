@@ -24,6 +24,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     });
 
     lenisRef.current = lenis;
+    (window as any).__lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -35,6 +36,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      delete (window as any).__lenis;
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
       ScrollTrigger.getAll().forEach((t) => t.kill());
