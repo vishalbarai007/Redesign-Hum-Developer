@@ -59,16 +59,16 @@ export default function HomePage() {
           onOpenBrochure={handleOpenBrochure}
         />
 
-        {/* 4. Our Story — Elevating the Everyday */}
+        {/* 7. World-Class Amenities Momentum Carousel */}
+        {/* <AmenitiesMomentumScrub /> */}
 
         {/* 5. Azimute-Style Curated Residences & Interactive Blueprint Explorer */}
         <AzimuteResidencesScrubber onOpenBooking={handleOpenBooking} />
 
         {/* 6. Day vs. Twilight Living Experience Perspective Switcher */}
-        <DayNightExperienceSlider onOpenBooking={handleOpenBooking} />
+        {/* <DayNightExperienceSlider onOpenBooking={handleOpenBooking} /> */}
 
-        {/* 7. World-Class Amenities Momentum Carousel */}
-        <AmenitiesMomentumScrub />
+
 
         {/* 8. Strategic Western Suburban Mumbai Transit Radar */}
         <MinimalTransitRadar />

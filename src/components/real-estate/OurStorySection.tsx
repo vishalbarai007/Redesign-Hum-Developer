@@ -83,23 +83,23 @@ export function OurStorySection({
             <div className="flex items-center gap-3 mb-2.5">
               <span className="w-8 h-[2px] bg-[#265CA0]" />
               <span className="text-xs uppercase tracking-[0.25em] text-[#265CA0] font-bold select-none">
-                OUR STORY
+                About Hum Developers
               </span>
             </div>
 
             {/* Headline matching Website Signature Typography */}
             <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight uppercase leading-[1.15] mb-4">
-              Building Dreams, Shaping Futures, Creating Legacies
+              Transforming Spaces, Enriching Lives
             </h2>
 
             {/* Body Paragraph matching Website Font & Slate Palette */}
             <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed mb-7 max-w-xl">
-              For over two decades, HUM Developers has been synonymous with luxury,
-              innovation, and architectural excellence in Mumbai&apos;s real estate landscape.
-              We don&apos;t just build properties; we craft experiences that define modern living.
-              Our commitment to quality, attention to detail, and customer-centric approach has made us one of
-              Mumbai&apos;s most trusted real estate brands. From luxury residential complexes to
-              commercial developments, every HUM project reflects our unwavering dedication to excellence.
+              For Over Two decades, we have evolved from a Boutique Developer to one of the trusted names
+              in Real estate, with our portfolio spanning Residential,
+              Commercial, and Mixed-used developments.
+
+              Our commitment to Architectural Excellence, Sustainable practices, and Customer-centric approach has earned
+              us the trust of over 2000 families and recognition from industry peers.
             </p>
 
             {/* CTA Button: Similar to 'Explore Lobby' in Deep Blue Color */}
@@ -109,7 +109,7 @@ export function OurStorySection({
                 onClick={() => setIsModalOpen(true)}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#183C68] hover:bg-[#265CA0] border border-[#183C68] hover:border-[#265CA0] text-white text-xs font-semibold uppercase tracking-wider shadow-lg shadow-[#183C68]/20 hover:shadow-xl hover:shadow-[#265CA0]/30 transition-all duration-300 cursor-pointer group shrink-0"
               >
-                <span>Our Story</span>
+                <span>Explore More</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
             </div>
