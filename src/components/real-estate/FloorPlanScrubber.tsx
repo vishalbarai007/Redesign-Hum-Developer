@@ -136,30 +136,6 @@ export function FloorPlanScrubber({ onOpenBooking }: FloorPlanScrubberProps) {
             Master Layout &amp; Top Views
           </h2>
         </div>
-
-        {/* Switcher Tabs: Floor Plan, 1BHK, 2BHK, 3BHK */}
-        <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-full shadow-sm">
-          {FLOOR_PLAN_SLIDES.map((slide, idx) => {
-            const isActive = currentIndex === idx;
-            return (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => {
-                  setDirection(idx > currentIndex ? 1 : -1);
-                  setCurrentIndex(idx);
-                }}
-                className={`px-4 sm:px-5 py-2 rounded-full text-xs uppercase font-bold tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer ${
-                  isActive
-                    ? "bg-[#265CA0] text-white shadow-md shadow-[#265CA0]/30"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/80"
-                }`}
-              >
-                <span>{slide.tabLabel}</span>
-              </button>
-            );
-          })}
-        </div>
       </div>
 
       {/* =========================================================================
@@ -170,25 +146,6 @@ export function FloorPlanScrubber({ onOpenBooking }: FloorPlanScrubberProps) {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Left Navigation Arrow */}
-        <button
-          type="button"
-          onClick={handlePrev}
-          className="absolute left-2 sm:left-4 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-[#265CA0] hover:text-white text-slate-800 border border-slate-200 shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer group"
-          aria-label="Previous layout"
-        >
-          {/* <ChevronLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" /> */}
-        </button>
-
-        {/* Right Navigation Arrow */}
-        <button
-          type="button"
-          onClick={handleNext}
-          className="absolute right-2 sm:right-4 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 hover:bg-[#265CA0] hover:text-white text-slate-800 border border-slate-200 shadow-xl backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer group"
-          aria-label="Next layout"
-        >
-          {/* <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" /> */}
-        </button>
 
         {/* Interactive Center Stage Card */}
         <div className="relative w-full h-full max-h-[72vh] bg-white/95 border border-slate-200/90 rounded-2xl shadow-xl overflow-hidden flex items-center justify-center p-3 sm:p-6 group/stage">
